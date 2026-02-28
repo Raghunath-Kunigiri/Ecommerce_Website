@@ -8,14 +8,22 @@ function run(cmd, args) {
 
 run("npx", ["prisma", "generate"]);
 
-const migrationsDir = "prisma/migrations";
-const hasMigrations =
-  existsSync(migrationsDir) && readdirSync(migrationsDir).length > 0;
+const hasDatabaseUrl = Boolean(process.env.DATABASE_URL);
 
-if (hasMigrations) {
-  run("npx", ["prisma", "migrate", "deploy"]);
+if (hasDatabaseUrl) {
+  const migrationsDir = "prisma/migrations";
+  const hasMigrations =
+    existsSync(migrationsDir) && readdirSync(migrationsDir).length > 0;
+
+  if (hasMigrations) {
+    run("npx", ["prisma", "migrate", "deploy"]);
+  } else {
+    run("npx", ["prisma", "db", "push"]);
+  }
 } else {
-  run("npx", ["prisma", "db", "push"]);
+  console.log(
+    "[vercel-build] DATABASE_URL not set; skipping prisma migrate/db push (demo mode build).",
+  );
 }
 
 run("npx", ["next", "build"]);
