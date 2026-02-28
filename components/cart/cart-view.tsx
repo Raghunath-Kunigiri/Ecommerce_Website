@@ -39,13 +39,24 @@ export function CartView() {
             className="flex gap-4 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-4"
           >
             <div className="relative size-24 overflow-hidden rounded-2xl border border-[color:var(--border)]">
+              {(() => {
+                const src =
+                  i.image ||
+                  "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=80";
+                const unoptimized =
+                  src.startsWith("https://upload.wikimedia.org/") ||
+                  src.startsWith("https://source.unsplash.com/");
+                return (
               <Image
-                src={i.image || "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=80"}
+                src={src}
                 alt={i.name}
                 fill
                 sizes="96px"
                 className="object-cover"
+                unoptimized={unoptimized}
               />
+                );
+              })()}
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-start justify-between gap-3">

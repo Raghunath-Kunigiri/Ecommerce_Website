@@ -15,6 +15,8 @@ export type CartItem = {
 
 type CartState = {
   items: CartItem[];
+  hasHydrated: boolean;
+  setHasHydrated: (value: boolean) => void;
   add: (product: Product, quantity?: number) => void;
   remove: (productId: string) => void;
   setQuantity: (productId: string, quantity: number) => void;
@@ -27,6 +29,8 @@ export const useCart = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      hasHydrated: false,
+      setHasHydrated: (value) => set({ hasHydrated: value }),
       add: (product, quantity = 1) =>
         set((state) => {
           const existing = state.items.find((i) => i.productId === product.id);
@@ -68,7 +72,12 @@ export const useCart = create<CartState>()(
       subtotal: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
       count: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
     }),
-    { name: "lss-cart-v1" },
+    {
+      name: "lss-cart-v1",
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
+    },
   ),
 );
 

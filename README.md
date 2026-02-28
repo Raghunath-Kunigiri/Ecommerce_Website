@@ -1,17 +1,21 @@
 ## Likitha Sweets Store
 
-Modern, production-ready **Sweets & Snacks Shop** built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.
+Modern, production-ready **Indian Sweets & Snacks Shop** built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.
 
-### Tech (current)
+### Tech (implemented)
 
 - Next.js (App Router)
 - Tailwind CSS
 - TypeScript
 - Framer Motion
 - Zustand (client cart)
-- ShadCN-style UI primitives (Button/Badge)
+- ShadCN-style UI primitives
+- Prisma ORM + PostgreSQL
+- NextAuth (Credentials)
+- Stripe Checkout + webhook (test mode supported)
+- Cloudinary (signed uploads) for product images
 
-Planned next (will be added step-by-step): Prisma + PostgreSQL, NextAuth, Cloudinary, Stripe, admin dashboard CRUD.
+Currency is **INR (₹)**; sample data uses local images in `public/products/`.
 
 ## Getting Started
 
@@ -23,6 +27,16 @@ From the project root:
 npm install
 ```
 
+### Configure env (local)
+
+Create `.env.local` using `.env.example` and set at least:
+
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL=http://localhost:3000`
+- `DATABASE_URL` (Postgres)
+
+Optional (for full demo): Stripe + Cloudinary keys.
+
 ### Run (dev)
 
 ```bash
@@ -30,6 +44,42 @@ npm run dev
 ```
 
 Open `http://localhost:3000`.
+
+## Demo mode (what to show your client)
+
+- **Homepage**: premium Indian mithai/namkeen theme + featured products
+- **Products**: search + category filter + animated product cards
+- **Product details**: gallery + hover zoom + quantity + add to cart
+- **Cart**: quantity controls + subtotal + checkout button
+- **Checkout**: Stripe Checkout session creation (test mode)
+- **Admin** (`/admin`):
+  - Products: create/edit/hide/delete + images (Cloudinary upload or paste URL)
+  - Categories: create/edit/delete (delete disabled when category has products)
+  - Orders: view list + update status
+
+## Database + seed (for real admin demo)
+
+After setting `DATABASE_URL`:
+
+```bash
+npm run db:push
+npm run db:seed
+```
+
+Seeded admin (unless you override env):
+
+- `ADMIN_EMAIL` (default `admin@likithasweets.com`)
+- `ADMIN_PASSWORD` (default `admin123`)
+
+## Stripe webhook (optional but recommended for orders)
+
+For local demo with Stripe CLI:
+
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+
+Copy the printed webhook secret into `STRIPE_WEBHOOK_SECRET`.
 
 ## Deploy to Vercel
 
@@ -98,14 +148,6 @@ styles/        (reserved)
 
 ### Notes
 
-- Remote images are allowed from Unsplash (sample data) and Cloudinary (when enabled).
+- Sample product images are local SVG placeholders (fast + reliable).
 - The UI theme is a warm, premium sweets brand palette defined in `app/globals.css`.
-
-## Next steps
-
-- Add Prisma schema + PostgreSQL + seed script
-- Add NextAuth authentication + admin role protection
-- Add Cloudinary image uploads for products
-- Add Stripe checkout flow + order success page
-- Build full admin CRUD for products/categories/orders
 

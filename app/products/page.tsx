@@ -1,11 +1,12 @@
-import { categories, products } from "@/lib/sample-data";
 import { ProductsBrowser } from "@/components/products/products-browser";
+import { getCategories, getProducts } from "@/lib/catalog";
 
 export const metadata = {
   title: "Products",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const [categories, products] = await Promise.all([getCategories(), getProducts()]);
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

@@ -33,7 +33,13 @@ export function LoginForm() {
             callbackUrl,
           });
           if (!res || res.error) {
-            setError("Invalid email or password.");
+            const msg =
+              res?.error === "CredentialsSignin"
+                ? "Invalid email or password."
+                : res?.error === "Configuration"
+                  ? "Auth is not configured. Add DATABASE_URL and NEXTAUTH_SECRET to your .env.local."
+                  : "Unable to sign in. Please try again.";
+            setError(msg);
             return;
           }
           router.push(res.url ?? callbackUrl);

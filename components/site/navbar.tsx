@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ShoppingBag, LogIn, LogOut, Shield } from "lucide-react";
+import { ShoppingBag, LogIn, LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
@@ -19,8 +19,8 @@ const navItems = [
 export function Navbar() {
   const pathname = usePathname();
   const cartCount = useCart((s) => s.count());
+  const hasHydrated = useCart((s) => s.hasHydrated);
   const { data } = useSession();
-  const isAdmin = data?.user?.role === "ADMIN";
 
   return (
     <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[color:var(--bg)]/80 backdrop-blur">
@@ -71,14 +71,6 @@ export function Navbar() {
           <Button asChild variant="secondary" className="hidden sm:inline-flex">
             <Link href="/products">Shop now</Link>
           </Button>
-          {isAdmin ? (
-            <Button asChild variant="outline" className="hidden sm:inline-flex">
-              <Link href="/admin" className="gap-2">
-                <Shield />
-                Admin
-              </Link>
-            </Button>
-          ) : null}
 
           {data?.user ? (
             <Button
@@ -101,7 +93,7 @@ export function Navbar() {
           <Button asChild variant="outline" size="icon" aria-label="Cart">
             <Link href="/cart" className="relative">
               <ShoppingBag />
-              {cartCount > 0 ? (
+              {hasHydrated && cartCount > 0 ? (
                 <span className="absolute -right-2 -top-2 grid min-w-5 place-items-center rounded-full bg-[color:var(--brand)] px-1.5 text-[10px] font-semibold leading-5 text-white">
                   {cartCount}
                 </span>

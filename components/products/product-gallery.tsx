@@ -19,6 +19,7 @@ export function ProductGallery({ images, alt }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
   const activeSrc = imgs[active] ?? imgs[0] ?? "";
+  const activeIsWikimedia = activeSrc.startsWith("https://upload.wikimedia.org/");
 
   return (
     <div className="space-y-3">
@@ -62,6 +63,7 @@ export function ProductGallery({ images, alt }: Props) {
                 sizes="(max-width: 1024px) 100vw, 520px"
                 className="object-cover"
                 priority
+                unoptimized={activeIsWikimedia}
               />
             </motion.div>
           </motion.div>
@@ -82,7 +84,14 @@ export function ProductGallery({ images, alt }: Props) {
             )}
             aria-label={`Select image ${idx + 1}`}
           >
-            <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="80px"
+              className="object-cover"
+              unoptimized={src.startsWith("https://upload.wikimedia.org/")}
+            />
           </button>
         ))}
       </div>

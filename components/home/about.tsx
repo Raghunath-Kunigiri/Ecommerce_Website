@@ -25,12 +25,11 @@ export function About() {
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
           <div className="space-y-3">
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              A premium sweets brand feel—built for modern commerce.
+              Crafted for celebrations. Made for everyday joy.
             </h2>
             <p className="text-sm leading-7 text-[color:var(--muted)] sm:text-base">
-              This project is designed like a production store: fast pages, elegant
-              motion, and scalable structure for categories, orders, and admin
-              workflows.
+              From festive mithai boxes to tea-time namkeen, we focus on quality,
+              freshness, and packaging that’s perfect for gifting.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">

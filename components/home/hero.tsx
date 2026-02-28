@@ -25,7 +25,7 @@ export function Hero() {
           >
             <Badge variant="brand" className="gap-1.5">
               <Sparkles className="size-3.5" />
-              Premium • Fresh • Handcrafted
+              Fresh Mithai • Namkeen • Handcrafted
             </Badge>
           </motion.div>
 
@@ -35,7 +35,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="text-balance text-4xl font-semibold tracking-tight text-[color:var(--fg)] sm:text-5xl"
           >
-            Sweets & snacks that feel like a celebration.
+            Mithai & snacks for every festival—and every craving.
           </motion.h1>
 
           <motion.p
@@ -44,8 +44,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.12 }}
             className="max-w-prose text-pretty text-base leading-7 text-[color:var(--muted)] sm:text-lg"
           >
-            Discover curated gift boxes, festival favorites, and everyday tea-time
-            bites—crafted with premium ingredients and shipped fast.
+            Explore fresh Indian sweets, crunchy namkeen, and tea-time snacks—perfect
+            for gifting, pooja, and family celebrations.
           </motion.p>
 
           <motion.div
@@ -82,7 +82,7 @@ export function Hero() {
               <div className="text-sm font-semibold text-[color:var(--fg)]">
                 Secure pay
               </div>
-              <div className="pt-1">Stripe</div>
+              <div className="pt-1">UPI / Cards</div>
             </div>
           </div>
         </div>

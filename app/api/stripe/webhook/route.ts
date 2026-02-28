@@ -35,6 +35,7 @@ export async function POST(req: Request) {
 
     const itemsRaw = session?.metadata?.items;
     const userId = session?.metadata?.userId || null;
+    const orderId = session?.metadata?.orderId || null;
     const amountTotal = session?.amount_total as number | null;
     const currency = (session?.currency as string | null) ?? "usd";
 
@@ -77,22 +78,55 @@ export async function POST(req: Request) {
       ];
     });
 
-    await prisma.order.create({
-      data: {
-        status: "PAID",
-        total: amountTotal,
-        currency: currency.toUpperCase(),
-        stripeCheckoutSessionId: session.id,
-        stripePaymentIntentId:
-          typeof session.payment_intent === "string"
-            ? session.payment_intent
-            : session.payment_intent?.id ?? null,
-        userId,
-        items: {
-          create: createItems,
+    const paymentIntentId =
+      typeof session.payment_intent === "string"
+        ? session.payment_intent
+        : session.payment_intent?.id ?? null;
+
+    if (orderId) {
+      await prisma.order.update({
+        where: { id: orderId },
+        data: {
+          status: "PAID",
+          total: amountTotal,
+          currency: currency.toUpperCase(),
+          stripeCheckoutSessionId: session.id,
+          stripePaymentIntentId: paymentIntentId,
+          userId,
         },
-      },
-    });
+      });
+    } else {
+      const existing = await prisma.order.findFirst({
+        where: { stripeCheckoutSessionId: session.id },
+        select: { id: true },
+      });
+      if (existing) {
+        await prisma.order.update({
+          where: { id: existing.id },
+          data: {
+            status: "PAID",
+            total: amountTotal,
+            currency: currency.toUpperCase(),
+            stripePaymentIntentId: paymentIntentId,
+            userId,
+          },
+        });
+      } else {
+        await prisma.order.create({
+          data: {
+            status: "PAID",
+            total: amountTotal,
+            currency: currency.toUpperCase(),
+            stripeCheckoutSessionId: session.id,
+            stripePaymentIntentId: paymentIntentId,
+            userId,
+            items: {
+              create: createItems,
+            },
+          },
+        });
+      }
+    }
   }
 
   return NextResponse.json({ received: true });

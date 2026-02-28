@@ -1,12 +1,16 @@
-import { Hero } from "@/components/home/hero";
+import { HeroCarousel } from "@/components/home/hero-carousel";
+import { CraftStrip } from "@/components/home/craft-strip";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { About } from "@/components/home/about";
+import { getCategories, getProducts } from "@/lib/catalog";
 
-export default function Home() {
+export default async function Home() {
+  const [categories, products] = await Promise.all([getCategories(), getProducts()]);
   return (
     <div>
-      <Hero />
-      <FeaturedProducts />
+      <HeroCarousel />
+      <CraftStrip />
+      <FeaturedProducts categories={categories} products={products} />
       <About />
     </div>
   );

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 
-import { products, formatMoney } from "@/lib/sample-data";
+import { formatMoney } from "@/lib/sample-data";
+import { getProductBySlug } from "@/lib/catalog";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPurchase } from "@/components/products/product-purchase";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ type Props = {
 
 export default async function ProductDetailsPage({ params }: Props) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) return notFound();
 
   return (
@@ -57,8 +58,8 @@ export default async function ProductDetailsPage({ params }: Props) {
               <ProductPurchase product={product} />
             </div>
             <p className="mt-4 text-xs text-[color:var(--muted)]">
-              Ingredients and allergen info can be configured per product in the
-              admin dashboard (coming next).
+              Packed fresh with care. If you have allergy questions, contact our
+              support before placing the order.
             </p>
           </div>
 
@@ -72,7 +73,7 @@ export default async function ProductDetailsPage({ params }: Props) {
             <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-5">
               <div className="text-sm font-semibold">Secure payments</div>
               <div className="mt-1 text-sm text-[color:var(--muted)]">
-                Stripe checkout (wiring next).
+                UPI / Cards / Netbanking via Stripe.
               </div>
             </div>
           </div>

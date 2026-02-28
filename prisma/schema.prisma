@@ -15,6 +15,7 @@ enum Role {
 enum OrderStatus {
   PENDING
   PAID
+  PROCESSING
   FULFILLED
   CANCELLED
   REFUNDED
@@ -55,8 +56,9 @@ model Product {
   slug        String    @unique
   description String
   price       Int
-  currency    String    @default("USD")
+  currency    String    @default("INR")
   images      String[]
+  tags        String[]
   isActive    Boolean   @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -75,7 +77,7 @@ model Order {
   id                     String      @id @default(cuid())
   status                 OrderStatus @default(PENDING)
   total                  Int
-  currency               String      @default("USD")
+  currency               String      @default("INR")
   stripeCheckoutSessionId String?
   stripePaymentIntentId  String?
   createdAt              DateTime    @default(now())

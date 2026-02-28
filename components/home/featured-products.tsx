@@ -3,18 +3,24 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
-import { categories, products } from "@/lib/sample-data";
+import type { Category, Product } from "@/lib/types";
 import { CategoryFilter } from "@/components/products/category-filter";
 import { ProductGrid } from "@/components/products/product-grid";
 
-export function FeaturedProducts() {
+export function FeaturedProducts({
+  categories,
+  products,
+}: {
+  categories: Category[];
+  products: Product[];
+}) {
   const [category, setCategory] = useState<string>("all");
 
   const featured = useMemo(() => {
     const base = products.filter((p) => p.isFeatured);
     if (category === "all") return base;
     return base.filter((p) => p.category === category);
-  }, [category]);
+  }, [category, products]);
 
   return (
     <section id="featured" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">

@@ -17,6 +17,8 @@ type Props = {
 
 export function ProductCard({ product }: Props) {
   const add = useCart((s) => s.add);
+  const src = product.images[0] ?? "";
+  const isWikimedia = src.startsWith("https://upload.wikimedia.org/");
 
   return (
     <motion.div
@@ -34,12 +36,12 @@ export function ProductCard({ product }: Props) {
             className="absolute inset-0"
           >
             <Image
-              src={product.images[0] ?? ""}
+              src={src}
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover"
-              priority={Boolean(product.isFeatured)}
+              unoptimized={isWikimedia}
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -70,7 +72,7 @@ export function ProductCard({ product }: Props) {
             <div className="text-sm font-semibold text-[color:var(--fg)]">
               {formatMoney(product.price)}
             </div>
-            <div className="text-xs text-[color:var(--muted)]">per box</div>
+            <div className="text-xs text-[color:var(--muted)]">per pack</div>
           </div>
         </div>
 

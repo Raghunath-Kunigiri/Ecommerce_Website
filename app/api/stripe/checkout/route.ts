@@ -53,12 +53,47 @@ export async function POST(req: Request) {
         description: p.description,
         price: p.price,
         images: p.images,
-        currency: "USD",
+        currency: "INR",
       });
     }
   }
 
   const origin = req.headers.get("origin") ?? "http://localhost:3000";
+
+  const computedTotal = parsed.data.items.reduce((sum, i) => {
+    const p = productById.get(i.productId);
+    if (!p) return sum;
+    return sum + p.price * i.quantity;
+  }, 0);
+
+  let orderId: string | null = null;
+  if (process.env.DATABASE_URL) {
+    const createItems = parsed.data.items.flatMap((i) => {
+      const p = productById.get(i.productId);
+      if (!p) return [];
+      return [
+        {
+          productId: p.id,
+          name: p.name,
+          price: p.price,
+          quantity: i.quantity,
+          image: p.images?.[0] ?? null,
+        },
+      ];
+    });
+
+    const created = await prisma.order.create({
+      data: {
+        status: "PENDING",
+        total: computedTotal,
+        currency: "INR",
+        userId,
+        items: { create: createItems },
+      },
+      select: { id: true },
+    });
+    orderId = created.id;
+  }
 
   const line_items = parsed.data.items.flatMap((i) => {
     const p = productById.get(i.productId);
@@ -67,7 +102,7 @@ export async function POST(req: Request) {
       {
         quantity: i.quantity,
         price_data: {
-          currency: (p.currency ?? "USD").toLowerCase(),
+          currency: (p.currency ?? "INR").toLowerCase(),
           unit_amount: p.price,
           product_data: {
             name: p.name,
@@ -92,8 +127,16 @@ export async function POST(req: Request) {
     metadata: {
       userId: userId ?? "",
       items: JSON.stringify(parsed.data.items),
+      orderId: orderId ?? "",
     },
   });
+
+  if (process.env.DATABASE_URL && orderId) {
+    await prisma.order.update({
+      where: { id: orderId },
+      data: { stripeCheckoutSessionId: checkout.id },
+    });
+  }
 
   return NextResponse.json({ url: checkout.url });
 }
