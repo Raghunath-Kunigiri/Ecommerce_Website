@@ -17,6 +17,23 @@
   --brand-soft: rgba(255, 106, 61, 0.14);
 }
 
+:root[data-theme="dark"] {
+  --bg: #0b0a09;
+  --fg: #f6f3ef;
+
+  --surface-1: rgba(255, 255, 255, 0.05);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --surface-3: rgba(255, 255, 255, 0.09);
+
+  --muted: rgba(246, 243, 239, 0.66);
+  --border: rgba(246, 243, 239, 0.12);
+  --ring: rgba(255, 122, 81, 0.35);
+
+  --brand: #ff7a51;
+  --brand-strong: #ff6a3d;
+  --brand-soft: rgba(255, 122, 81, 0.16);
+}
+
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
@@ -25,7 +42,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --bg: #0b0a09;
     --fg: #f6f3ef;
 

@@ -64,8 +64,13 @@ export function ProductCard({ product }: Props) {
             >
               {product.name}
             </Link>
+            {product.nameTe ? (
+              <div className="mt-0.5 truncate text-xs text-[color:var(--muted)]">
+                {product.nameTe}
+              </div>
+            ) : null}
             <p className="mt-1 line-clamp-2 text-sm text-[color:var(--muted)]">
-              {product.description}
+              {product.description || "Freshly made at Balaji Snacks — Anantapur."}
             </p>
           </div>
           <div className="shrink-0 text-right">

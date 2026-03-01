@@ -1,0 +1,618 @@
+{
+  "shop": {
+    "name": "BALAJI SNACKS",
+    "nameTe": "బాలాజీ స్నాక్స్",
+    "addressLines": [
+      "Door No: 28/6/231, Flat No: 517",
+      "Housing Board Colony, Y.S.R Nagar",
+      "Anantapur, Andhra Pradesh – 515001"
+    ],
+    "phones": ["9849008077", "9000034909", "9966947757"]
+  },
+  "categories": [
+    { "id": "cat_rotti", "name": "Rotti", "nameTe": "రొట్టెలు", "slug": "rotti" },
+    { "id": "cat_hot", "name": "Hot Items", "nameTe": "హాట్ ఐటమ్స్", "slug": "hot-items" },
+    { "id": "cat_sweets", "name": "Sweets", "nameTe": "స్వీట్స్", "slug": "sweets" },
+    { "id": "cat_podulu", "name": "Podulu (Powders)", "nameTe": "పొడులు", "slug": "podulu" },
+    { "id": "cat_special", "name": "Special Items", "nameTe": "స్పెషల్ ఐటమ్స్", "slug": "special-items" },
+    { "id": "cat_festival", "name": "Festival Specials", "nameTe": "పండుగ స్పెషల్", "slug": "festival-specials" }
+  ],
+  "products": [
+    {
+      "id": "balaji_saddha_rotti",
+      "name": "Saddha Rotti",
+      "slug": "saddha-rotti",
+      "description": "సద్ద రొట్టి",
+      "price": 4900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nuvvula_rotti",
+      "name": "Nuvvula Rotti",
+      "slug": "nuvvula-rotti",
+      "description": "నువ్వుల రొట్టి",
+      "price": 5900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_antukula_rotti",
+      "name": "Antukula Rotti",
+      "slug": "antukula-rotti",
+      "description": "అంటుకుల రొట్టి",
+      "price": 5900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_jonna_rotti",
+      "name": "Jonna Rotti",
+      "slug": "jonna-rotti",
+      "description": "జొన్న రొట్టి",
+      "price": 5900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_korra_rotti",
+      "name": "Korra Rotti",
+      "slug": "korra-rotti",
+      "description": "కొర్ర రొట్టి",
+      "price": 5900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_ragi_rotti",
+      "name": "Ragi Rotti",
+      "slug": "ragi-rotti",
+      "description": "రాగి రొట్టి",
+      "price": 5900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_oodalu_rottelu_pachhikaram",
+      "name": "Oodalu Rottelu (Pachhikaram)",
+      "slug": "oodalu-rottelu-pachhikaram",
+      "description": "ఓడలు రొట్టెలు (పచ్చికారం)",
+      "price": 6900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_oodalu_rottelu_otti_karam",
+      "name": "Oodalu Rottelu (Otti Karam)",
+      "slug": "oodalu-rottelu-otti-karam",
+      "description": "ఓడలు రొట్టెలు (ఒట్టి కారం)",
+      "price": 6900,
+      "category": "rotti",
+      "images": ["/products/placeholder-rotti.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+
+    {
+      "id": "balaji_chekkalu",
+      "name": "Chekkalu",
+      "slug": "chekkalu",
+      "description": "చెక్కలు",
+      "price": 14900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_uddipappu_chekkalu",
+      "name": "Uddipappu Chekkalu",
+      "slug": "uddipappu-chekkalu",
+      "description": "ఉద్దిపప్పు చెక్కలు",
+      "price": 15900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_vaamu_chekkalu",
+      "name": "Vaamu Chekkalu",
+      "slug": "vaamu-chekkalu",
+      "description": "వాము చెక్కలు",
+      "price": 15900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nippattu",
+      "name": "Nippattu",
+      "slug": "nippattu",
+      "description": "నిప్పట్టు",
+      "price": 13900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_madduru_vada",
+      "name": "Madduru Vada",
+      "slug": "madduru-vada",
+      "description": "మద్దూరు వడ",
+      "price": 16900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_hot_boondi",
+      "name": "Hot Boondi",
+      "slug": "hot-boondi",
+      "description": "హాట్ బూంది",
+      "price": 12900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_sabudana_murukulu",
+      "name": "Sabudana Murukulu",
+      "slug": "sabudana-murukulu",
+      "description": "సగ్గుబియ్యం మురుకులు",
+      "price": 14900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_borugulu_masala",
+      "name": "Borugulu Masala",
+      "slug": "borugulu-masala",
+      "description": "బొరుగులు (మసాలా)",
+      "price": 7900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nimmakaya_borugulu",
+      "name": "Nimmakaya Borugulu",
+      "slug": "nimmakaya-borugulu",
+      "description": "నిమ్మకాయ బొరుగులు",
+      "price": 7900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_diamond_biscuits",
+      "name": "Diamond Biscuits",
+      "slug": "diamond-biscuits",
+      "description": "డైమండ్ బిస్కెట్స్",
+      "price": 12900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_atukulu",
+      "name": "Atukulu",
+      "slug": "atukulu",
+      "description": "అటుకులు",
+      "price": 6900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+
+    {
+      "id": "balaji_khajalu_sugar",
+      "name": "Khajalu (Sugar)",
+      "slug": "khajalu-sugar",
+      "description": "ఖాజాలు (చక్కెర)",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_rava_laddu_sugar",
+      "name": "Rava Laddu (Sugar)",
+      "slug": "rava-laddu-sugar",
+      "description": "రవ్వ లడ్డూ (చక్కెర)",
+      "price": 19900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_rava_laddu_jaggery",
+      "name": "Rava Laddu (Jaggery)",
+      "slug": "rava-laddu-jaggery",
+      "description": "రవ్వ లడ్డూ (బెల్లం)",
+      "price": 19900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_besan_laddu",
+      "name": "Besan Laddu",
+      "slug": "besan-laddu",
+      "description": "బేసన్ లడ్డూ",
+      "price": 22900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_sunnundalu",
+      "name": "Sunnundalu",
+      "slug": "sunnundalu",
+      "description": "సున్నుండలు",
+      "price": 24900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Best Seller"]
+    },
+    {
+      "id": "balaji_oats_laddu",
+      "name": "Oats Laddu",
+      "slug": "oats-laddu",
+      "description": "ఓట్స్ లడ్డూ",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_chekkera_kajjikayalu",
+      "name": "Chekkera Kajjikayalu",
+      "slug": "chekkera-kajjikayalu",
+      "description": "చెక్కెర కజ్జికాయలు",
+      "price": 23900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_bellam_kajjikayalu",
+      "name": "Bellam Kajjikayalu",
+      "slug": "bellam-kajjikayalu",
+      "description": "బెల్లం కజ్జికాయలు",
+      "price": 23900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nuvvula_kajjikayalu",
+      "name": "Nuvvula Kajjikayalu",
+      "slug": "nuvvula-kajjikayalu",
+      "description": "నువ్వుల కజ్జికాయలు",
+      "price": 23900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nuvvula_laddu_white",
+      "name": "Nuvvula Laddu (White)",
+      "slug": "nuvvula-laddu-white",
+      "description": "నువ్వుల లడ్డూ (తెలుపు)",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_nuvvula_laddu_black",
+      "name": "Nuvvula Laddu (Black)",
+      "slug": "nuvvula-laddu-black",
+      "description": "నువ్వుల లడ్డూ (నల్ల)",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_boondi_laddu_sugar",
+      "name": "Boondi Laddu (Sugar)",
+      "slug": "boondi-laddu-sugar",
+      "description": "బూంది లడ్డూ (చక్కెర)",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_boondi_laddu_jaggery",
+      "name": "Boondi Laddu (Jaggery)",
+      "slug": "boondi-laddu-jaggery",
+      "description": "బూంది లడ్డూ (బెల్లం)",
+      "price": 21900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_otti_kajjikayalu_sugar",
+      "name": "Otti Kajjikayalu (Sugar)",
+      "slug": "otti-kajjikayalu-sugar",
+      "description": "ఒట్టి కజ్జికాయలు (చక్కెర)",
+      "price": 22900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_otti_kajjikayalu_jaggery",
+      "name": "Otti Kajjikayalu (Jaggery)",
+      "slug": "otti-kajjikayalu-jaggery",
+      "description": "ఒట్టి కజ్జికాయలు (బెల్లం)",
+      "price": 22900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_pakam_chekkalu_kaju_pakam",
+      "name": "Pakam Chekkalu / Kaju Pakam",
+      "slug": "pakam-chekkalu-kaju-pakam",
+      "description": "పాకం చెక్కలు / కాజా పాకం",
+      "price": 24900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_purnam_boorelu",
+      "name": "Purnam Boorelu",
+      "slug": "purnam-boorelu",
+      "description": "పూర్ణం బూరెలు",
+      "price": 26900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_kobbari_boorelu",
+      "name": "Kobbari Boorelu",
+      "slug": "kobbari-boorelu",
+      "description": "కొబ్బరి బూరెలు",
+      "price": 26900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_kova_boorelu",
+      "name": "Kova Boorelu",
+      "slug": "kova-boorelu",
+      "description": "కోవా బూరెలు",
+      "price": 28900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+
+    {
+      "id": "balaji_karivepaku_podi",
+      "name": "Karivepaku Podi",
+      "slug": "karivepaku-podi",
+      "description": "కరివేపాకు పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_chintaku_podi",
+      "name": "Chintaku Podi",
+      "slug": "chintaku-podi",
+      "description": "చింతాకు పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_chettu_podi",
+      "name": "Chettu Podi",
+      "slug": "chettu-podi",
+      "description": "చెట్టు పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_senagapappu_podi",
+      "name": "Senagapappu Podi",
+      "slug": "senagapappu-podi",
+      "description": "సెనగపప్పు పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_chaddannam_podi",
+      "name": "Chaddannam Podi",
+      "slug": "chaddannam-podi",
+      "description": "చద్దన్నం పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_idli_karam",
+      "name": "Idli Karam",
+      "slug": "idli-karam",
+      "description": "ఇడ్లీకారం",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_pappula_podi",
+      "name": "Pappula Podi",
+      "slug": "pappula-podi",
+      "description": "పప్పుల పొడి",
+      "price": 9900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_rasam_podi",
+      "name": "Rasam Podi",
+      "slug": "rasam-podi",
+      "description": "రసం పొడి",
+      "price": 11900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_sambar_podi",
+      "name": "Sambar Podi",
+      "slug": "sambar-podi",
+      "description": "సాంబారు పొడి",
+      "price": 11900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_vangi_bath_podi",
+      "name": "Vangi Bath Podi",
+      "slug": "vangi-bath-podi",
+      "description": "వంగిబాత్ పొడి",
+      "price": 11900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_bisi_bele_bath_podi",
+      "name": "Bisi Bele Bath Podi",
+      "slug": "bisi-bele-bath-podi",
+      "description": "బిసిబెల బాత్ పొడి",
+      "price": 11900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_pulihora_podi",
+      "name": "Pulihora Podi",
+      "slug": "pulihora-podi",
+      "description": "పులిహోర పొడి",
+      "price": 11900,
+      "category": "podulu",
+      "images": ["/products/placeholder-podulu.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+
+    {
+      "id": "balaji_ariselu_special",
+      "name": "Ariselu",
+      "slug": "ariselu-special",
+      "description": "అరిసెలు",
+      "price": 29900,
+      "category": "special-items",
+      "images": ["/products/placeholder-special.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_janthikalu_special",
+      "name": "Janthikalu",
+      "slug": "janthikalu-special",
+      "description": "జంతికలు",
+      "price": 16900,
+      "category": "special-items",
+      "images": ["/products/placeholder-special.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_murukulu_special",
+      "name": "Murukulu",
+      "slug": "murukulu-special",
+      "description": "మురుకులు",
+      "price": 16900,
+      "category": "special-items",
+      "images": ["/products/placeholder-special.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_karam_boondi_special",
+      "name": "Karam Boondi",
+      "slug": "karam-boondi-special",
+      "description": "కారం బూంది",
+      "price": 14900,
+      "category": "special-items",
+      "images": ["/products/placeholder-special.svg"],
+      "tags": ["Balaji Snacks", "Spicy"]
+    },
+    {
+      "id": "balaji_mixture_special",
+      "name": "Mixture",
+      "slug": "mixture-special",
+      "description": "మిక్స్చర్",
+      "price": 14900,
+      "category": "special-items",
+      "images": ["/products/placeholder-special.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+
+    {
+      "id": "balaji_kajjikayalu_festival",
+      "name": "Kajjikayalu",
+      "slug": "kajjikayalu-festival",
+      "description": "కజ్జికాయలు",
+      "price": 24900,
+      "category": "festival-specials",
+      "images": ["/products/placeholder-festival.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_laddu_festival",
+      "name": "Laddu",
+      "slug": "laddu-festival",
+      "description": "లడ్డూ",
+      "price": 21900,
+      "category": "festival-specials",
+      "images": ["/products/placeholder-festival.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_boorelu_festival",
+      "name": "Boorelu",
+      "slug": "boorelu-festival",
+      "description": "బూరెలు",
+      "price": 26900,
+      "category": "festival-specials",
+      "images": ["/products/placeholder-festival.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_ariselu_festival",
+      "name": "Ariselu (Festival)",
+      "slug": "ariselu-festival",
+      "description": "అరిసెలు",
+      "price": 29900,
+      "category": "festival-specials",
+      "images": ["/products/placeholder-festival.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    }
+  ]
+}
+

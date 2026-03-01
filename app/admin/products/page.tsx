@@ -6,17 +6,55 @@ import { ProductRowActions } from "@/components/admin/product-row-actions";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { formatMoney } from "@/lib/sample-data";
+import { getCategories, getProducts } from "@/lib/catalog";
 
 export const metadata = { title: "Admin • Products" };
 
 export default async function AdminProductsPage() {
   if (!process.env.DATABASE_URL) {
+    const [products, categories] = await Promise.all([getProducts(), getCategories()]);
+    const categoryNameBySlug = new Map(categories.map((c) => [c.slug, c.name]));
     return (
       <AdminShell
         title="Products"
         description="Create, edit, and manage your product catalog."
       >
         <AdminRequiresDb />
+        <div className="mt-6 flex items-center justify-between">
+          <div className="text-sm text-[color:var(--muted)]">
+            {products.length} item{products.length === 1 ? "" : "s"}
+          </div>
+          <Button disabled title="Connect database to add products">
+            Add product
+          </Button>
+        </div>
+
+        <div className="mt-4 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)]">
+          <div className="grid grid-cols-[1.6fr_1fr_.8fr] gap-3 border-b border-[color:var(--border)] px-5 py-3 text-xs font-semibold text-[color:var(--muted)]">
+            <div>Name</div>
+            <div>Category</div>
+            <div>Price</div>
+          </div>
+          <div className="divide-y divide-[color:var(--border)]">
+            {products.map((p) => (
+              <div
+                key={p.id}
+                className="grid grid-cols-[1.6fr_1fr_.8fr] items-center gap-3 px-5 py-4"
+              >
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-semibold">{p.name}</div>
+                  <div className="truncate text-xs text-[color:var(--muted)]">
+                    /products/{p.slug}
+                  </div>
+                </div>
+                <div className="text-sm">
+                  {categoryNameBySlug.get(p.category) ?? p.category}
+                </div>
+                <div className="text-sm font-semibold">{formatMoney(p.price, "INR")}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </AdminShell>
     );
   }

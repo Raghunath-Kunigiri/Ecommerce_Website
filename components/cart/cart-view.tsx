@@ -40,12 +40,15 @@ export function CartView() {
           >
             <div className="relative size-24 overflow-hidden rounded-2xl border border-[color:var(--border)]">
               {(() => {
+                // Cart may contain stale image URLs from previous demo data. Prefer local/Cloudinary.
+                const raw = i.image ?? "";
                 const src =
-                  i.image ||
-                  "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=80";
-                const unoptimized =
-                  src.startsWith("https://upload.wikimedia.org/") ||
-                  src.startsWith("https://source.unsplash.com/");
+                  raw &&
+                  (raw.startsWith("/") ||
+                    raw.startsWith("https://res.cloudinary.com/") ||
+                    raw.startsWith("https://images.unsplash.com/"))
+                    ? raw
+                    : "/products/placeholder-sweets.svg";
                 return (
               <Image
                 src={src}
@@ -53,7 +56,6 @@ export function CartView() {
                 fill
                 sizes="96px"
                 className="object-cover"
-                unoptimized={unoptimized}
               />
                 );
               })()}

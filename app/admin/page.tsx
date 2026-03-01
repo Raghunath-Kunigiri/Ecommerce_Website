@@ -2,23 +2,42 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AdminShell } from "@/components/admin/admin-shell";
-import { AdminRequiresDb } from "@/components/admin/admin-requires-db";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
+import { getCategories, getProducts } from "@/lib/catalog";
 
 export const metadata = {
   title: "Admin",
 };
 
-export default function AdminPage() {
+export default async function AdminPage() {
   const dbEnabled = Boolean(process.env.DATABASE_URL);
   if (!dbEnabled) {
+    const [products, categories] = await Promise.all([getProducts(), getCategories()]);
     return (
       <AdminShell
         title="Overview"
-        description="Configure Postgres to unlock full admin features."
+        description="Demo mode: connect Postgres to unlock full admin features."
       >
-        <AdminRequiresDb />
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-6">
+            <div className="text-sm text-[color:var(--muted)]">Products</div>
+            <div className="mt-1 text-3xl font-semibold tracking-tight">{products.length}</div>
+          </div>
+          <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-6">
+            <div className="text-sm text-[color:var(--muted)]">Categories</div>
+            <div className="mt-1 text-3xl font-semibold tracking-tight">{categories.length}</div>
+          </div>
+          <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-6">
+            <div className="text-sm text-[color:var(--muted)]">Orders</div>
+            <div className="mt-1 text-3xl font-semibold tracking-tight">—</div>
+          </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          <QuickLink href="/admin/products" label="View products" />
+          <QuickLink href="/admin/categories" label="View categories" />
+          <QuickLink href="/admin/orders" label="Orders (requires DB)" />
+        </div>
       </AdminShell>
     );
   }

@@ -27,6 +27,7 @@ export function ProductsBrowser({ categories, products }: Props) {
 
       const hay = [
         p.name,
+        p.nameTe ?? "",
         p.description,
         p.category,
         ...(p.tags ?? []),

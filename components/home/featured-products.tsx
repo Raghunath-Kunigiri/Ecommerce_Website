@@ -17,7 +17,11 @@ export function FeaturedProducts({
   const [category, setCategory] = useState<string>("all");
 
   const featured = useMemo(() => {
-    const base = products.filter((p) => p.isFeatured);
+    const picked = products.filter((p) => p.isFeatured);
+    const base =
+      picked.length >= 6
+        ? picked
+        : [...picked, ...products.filter((p) => !p.isFeatured)].slice(0, 6);
     if (category === "all") return base;
     return base.filter((p) => p.category === category);
   }, [category, products]);

@@ -7,6 +7,7 @@ import { ShoppingBag, LogIn, LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/store/cart";
 
@@ -71,6 +72,8 @@ export function Navbar() {
           <Button asChild variant="secondary" className="hidden sm:inline-flex">
             <Link href="/products">Shop now</Link>
           </Button>
+
+          <ThemeToggle />
 
           {data?.user ? (
             <Button

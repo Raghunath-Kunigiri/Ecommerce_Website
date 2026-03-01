@@ -21,6 +21,12 @@ export default async function AdminOrdersPage() {
     return (
       <AdminShell title="Orders" description="View and update order status.">
         <AdminRequiresDb />
+        <div className="mt-6 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-8">
+          <div className="text-sm text-[color:var(--muted)]">
+            Orders are available after connecting a database (Postgres) and completing Stripe test
+            payments.
+          </div>
+        </div>
       </AdminShell>
     );
   }

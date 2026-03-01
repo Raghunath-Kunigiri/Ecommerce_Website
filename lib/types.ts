@@ -4,7 +4,12 @@ export type CategorySlug =
   | "namkeen"
   | "bakery"
   | "chocolates"
-  | "beverages";
+  | "beverages"
+  | "rotti"
+  | "hot-items"
+  | "podulu"
+  | "special-items"
+  | "festival-specials";
 
 export type Category = {
   id: string;
@@ -15,6 +20,7 @@ export type Category = {
 export type Product = {
   id: string;
   name: string;
+  nameTe?: string;
   slug: string;
   description: string;
   price: number; // in cents
