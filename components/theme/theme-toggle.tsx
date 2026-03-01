@@ -7,11 +7,6 @@ import { Button } from "@/components/ui/button";
 
 type Theme = "light" | "dark";
 
-function getSystemTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
 function applyTheme(theme: Theme) {
   if (typeof document === "undefined") return;
   document.documentElement.setAttribute("data-theme", theme);
@@ -24,7 +19,7 @@ export function ThemeToggle() {
     if (typeof window === "undefined") return "light";
     const saved = window.localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") return saved;
-    return getSystemTheme();
+    return "light";
   }, []);
 
   const [theme, setTheme] = useState<Theme>(initial);
