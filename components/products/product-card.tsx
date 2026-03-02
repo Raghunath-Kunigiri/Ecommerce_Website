@@ -44,7 +44,7 @@ export function ProductCard({ product }: Props) {
               unoptimized={isWikimedia}
             />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--brand-soft)] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
           <div className="absolute left-4 top-4 flex flex-wrap gap-2">
             {product.tags?.slice(0, 2).map((t) => (
               <Badge key={t} variant="brand" className="backdrop-blur">

@@ -1,4 +1,4 @@
-## Likitha Sweets Store
+## Balaji Sweets Store
 
 Modern, production-ready **Indian Sweets & Snacks Shop** built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.
 

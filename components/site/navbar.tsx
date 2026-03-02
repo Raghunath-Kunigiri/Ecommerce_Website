@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/store/cart";
 
 const navItems = [
+  { href: "/menu", label: "Menu" },
   { href: "/products", label: "Products" },
   { href: "/#featured", label: "Featured" },
   { href: "/#about", label: "About" },
@@ -33,7 +34,7 @@ export function Navbar() {
           </div>
           <div className="leading-tight">
             <div className="font-semibold tracking-tight text-[color:var(--fg)]">
-              Likitha Sweets
+              Balaji Sweets
             </div>
             <div className="text-xs text-[color:var(--muted)]">
               Premium sweets & snacks

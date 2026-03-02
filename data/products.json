@@ -79,20 +79,20 @@
       "tags": ["Balaji Snacks"]
     },
     {
-      "id": "balaji_oodalu_rottelu_pachhikaram",
-      "name": "Oodalu Rottelu (Pachhikaram)",
-      "slug": "oodalu-rottelu-pachhikaram",
-      "description": "ఓడలు రొట్టెలు (పచ్చికారం)",
+      "id": "balaji_oodalu_rotti_spicy",
+      "name": "Oodalu Rotti (Spicy)",
+      "slug": "oodalu-rotti-spicy",
+      "description": "ఓడలు రొట్టి (కారం)",
       "price": 6900,
       "category": "rotti",
       "images": ["/products/placeholder-rotti.svg"],
       "tags": ["Balaji Snacks"]
     },
     {
-      "id": "balaji_oodalu_rottelu_otti_karam",
-      "name": "Oodalu Rottelu (Otti Karam)",
-      "slug": "oodalu-rottelu-otti-karam",
-      "description": "ఓడలు రొట్టెలు (ఒట్టి కారం)",
+      "id": "balaji_oodalu_rotti_plain",
+      "name": "Oodalu Rotti (Plain)",
+      "slug": "oodalu-rotti-plain",
+      "description": "ఓడలు రొట్టి (సాధారణం)",
       "price": 6900,
       "category": "rotti",
       "images": ["/products/placeholder-rotti.svg"],
@@ -164,6 +164,36 @@
       "name": "Sabudana Murukulu",
       "slug": "sabudana-murukulu",
       "description": "సగ్గుబియ్యం మురుకులు",
+      "price": 14900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_murukulu",
+      "name": "Murukulu",
+      "slug": "murukulu",
+      "description": "మురుకులు",
+      "price": 14900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_janthikalu",
+      "name": "Janthikalu",
+      "slug": "janthikalu",
+      "description": "జంతికలు",
+      "price": 16900,
+      "category": "hot-items",
+      "images": ["/products/placeholder-hot-items.svg"],
+      "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_mixture",
+      "name": "Mixture",
+      "slug": "mixture",
+      "description": "మిక్స్చర్",
       "price": 14900,
       "category": "hot-items",
       "images": ["/products/placeholder-hot-items.svg"],
@@ -287,7 +317,7 @@
       "description": "బెల్లం కజ్జికాయలు",
       "price": 23900,
       "category": "sweets",
-      "images": ["/products/placeholder-sweets.svg"],
+      "images": ["public/Items_Images/Kajjikayalu.png"],
       "tags": ["Balaji Snacks"]
     },
     {
@@ -339,6 +369,26 @@
       "category": "sweets",
       "images": ["/products/placeholder-sweets.svg"],
       "tags": ["Balaji Snacks"]
+    },
+    {
+      "id": "balaji_kajjikayalu",
+      "name": "Kajjikayalu",
+      "slug": "kajjikayalu",
+      "description": "కజ్జికాయలు",
+      "price": 23900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
+    },
+    {
+      "id": "balaji_ariselu",
+      "name": "Ariselu",
+      "slug": "ariselu",
+      "description": "అరిసెలు",
+      "price": 29900,
+      "category": "sweets",
+      "images": ["/products/placeholder-sweets.svg"],
+      "tags": ["Balaji Snacks", "Festive"]
     },
     {
       "id": "balaji_otti_kajjikayalu_sugar",

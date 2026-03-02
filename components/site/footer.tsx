@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div className="space-y-3">
           <div className="text-sm font-semibold tracking-tight">
-            Likitha Sweets
+            Balaji Sweets
           </div>
           <p className="text-sm text-[color:var(--muted)]">
             A premium sweets & snacks store crafted for celebrations, gifting,
@@ -39,7 +39,7 @@ export function Footer() {
       </div>
       <div className="border-t border-[color:var(--border)]">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-[color:var(--muted)] sm:px-6 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Likitha Sweets. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Balaji Sweets. All rights reserved.</p>
           <p className="opacity-90">Fast delivery • Secure payments</p>
         </div>
       </div>

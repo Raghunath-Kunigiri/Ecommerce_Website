@@ -18,8 +18,8 @@ const fontDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Likitha Sweets — Premium Sweets & Snacks",
-    template: "%s • Likitha Sweets",
+    default: "Balaji Sweets — Premium Sweets & Snacks",
+    template: "%s • Balaji Sweets",
   },
   description:
     "A modern premium sweets & snacks ecommerce store with fast delivery, secure payments, and handcrafted favorites.",

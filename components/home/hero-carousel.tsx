@@ -28,40 +28,37 @@ export function HeroCarousel() {
   const slides: Slide[] = useMemo(
     () => [
       {
-        key: "kaju",
-        label: "SIGNATURE MITHAI",
-        headline: "Kaju Katli",
-        tagline: "Silky, rich, and gift‑ready.",
-        description: "Premium cashew mithai finished with delicate silver varak.",
-        pricePaise: 59900,
-        unit: "per 250g",
-        imageSrc:
-          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Kaju_katli_dessert_-_top_view.jpg",
-        productHref: "/products/kaju-katli-royale",
+        key: "sunnundalu",
+        label: "SIGNATURE SWEETS",
+        headline: "Sunnundalu",
+        tagline: "Roasted urad laddu, pure comfort.",
+        description: "A Balaji classic—slow roasted, aromatic, and melt‑in‑mouth.",
+        pricePaise: 24900,
+        unit: "per pack",
+        imageSrc: "/Items_Images/Sunnundalu.png",
+        productHref: "/products/sunnundalu",
       },
       {
-        key: "gulab",
-        label: "FESTIVE FAVOURITE",
-        headline: "Gulab Jamun",
-        tagline: "Soft, syrupy, unforgettable.",
-        description: "Khoya dumplings soaked in saffron sugar syrup.",
-        pricePaise: 29900,
-        unit: "per box",
-        imageSrc:
-          "https://upload.wikimedia.org/wikipedia/commons/0/06/Gulab_Jamun_%28Indian_Doughnuts%29.JPG",
-        productHref: "/products/gulab-jamun",
+        key: "chekkalu",
+        label: "HOT & CRISPY",
+        headline: "Chekkalu",
+        tagline: "Crisp, spiced, addictive.",
+        description: "Perfect tea‑time crunch with that homemade touch.",
+        pricePaise: 14900,
+        unit: "per pack",
+        imageSrc: "/Items_Images/Chekkalu.png",
+        productHref: "/products/chekkalu",
       },
       {
         key: "mixture",
-        label: "CRUNCHY NAMKEEN",
-        headline: "South Indian Mixture",
-        tagline: "Spicy, crispy, addictive.",
-        description: "Sev, peanuts, and spices — perfect with chai.",
-        pricePaise: 19900,
+        label: "CRUNCHY SPECIAL",
+        headline: "Mixture",
+        tagline: "Spicy, crunchy, and satisfying.",
+        description: "A bold mix for movie nights and chai breaks.",
+        pricePaise: 14900,
         unit: "per pack",
-        imageSrc:
-          "https://upload.wikimedia.org/wikipedia/commons/e/e6/Spicy_and_namkeen_garlic_mixture_snack_with_peanuts%2C_photographed_in_West_Bengal%2C_India%2C_August_13%2C_2024.jpg",
-        productHref: "/products/south-indian-mixture",
+        imageSrc: "/Items_Images/Mixture.png",
+        productHref: "/products/mixture-special",
       },
     ],
     [],
@@ -97,7 +94,6 @@ export function HeroCarousel() {
                 priority
                 sizes="100vw"
                 className="object-cover opacity-90 [filter:brightness(0.55)_contrast(1.15)_saturate(1.1)]"
-                unoptimized={active.imageSrc.startsWith("https://upload.wikimedia.org/")}
               />
             </div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,106,61,0.18),transparent_55%)]" />
