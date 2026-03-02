@@ -15,6 +15,13 @@
   --brand: #ff6a3d;
   --brand-strong: #f0562b;
   --brand-soft: rgba(255, 106, 61, 0.14);
+
+  /* Hero (homepage carousel) — keep images natural in light mode */
+  --hero-image-filter: none;
+  --hero-image-opacity: 1;
+  --hero-radial-opacity: 0.08;
+  --hero-linear-opacity: 0.12;
+  --hero-vignette-opacity: 0.10;
 }
 
 :root[data-theme="dark"] {
@@ -32,6 +39,13 @@
   --brand: #ff7a51;
   --brand-strong: #ff6a3d;
   --brand-soft: rgba(255, 122, 81, 0.16);
+
+  /* Hero (homepage carousel) — moody in dark mode */
+  --hero-image-filter: brightness(0.55) contrast(1.15) saturate(1.1);
+  --hero-image-opacity: 0.9;
+  --hero-radial-opacity: 0.18;
+  --hero-linear-opacity: 0.75;
+  --hero-vignette-opacity: 0.55;
 }
 
 @theme inline {

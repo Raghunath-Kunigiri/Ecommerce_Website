@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -28,13 +29,19 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[color:var(--bg)]/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="group inline-flex items-center gap-2">
-          <div className="relative grid size-9 place-items-center rounded-2xl bg-[color:var(--brand-soft)]">
-            <div className="size-2.5 rounded-full bg-[color:var(--brand)]" />
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-[color:var(--border)]" />
+          <div className="relative size-10 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)]">
+            <Image
+              src="/Items_Images/Logo2.jpeg"
+              alt="Balaji Snacks"
+              fill
+              sizes="40px"
+              className="object-cover"
+              priority
+            />
           </div>
           <div className="leading-tight">
             <div className="font-semibold tracking-tight text-[color:var(--fg)]">
-              Balaji Sweets
+              Balaji Snacks
             </div>
             <div className="text-xs text-[color:var(--muted)]">
               Premium sweets & snacks

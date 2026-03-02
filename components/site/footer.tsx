@@ -1,12 +1,22 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
     <footer className="border-t border-[color:var(--border)] bg-[color:var(--bg)]">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div className="space-y-3">
-          <div className="text-sm font-semibold tracking-tight">
-            Balaji Sweets
+          <div className="flex items-center gap-3">
+            <div className="relative size-10 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)]">
+              <Image
+                src="/Items_Images/Logo2.jpeg"
+                alt="Balaji Snacks"
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            </div>
+            <div className="text-sm font-semibold tracking-tight">Balaji Snacks</div>
           </div>
           <p className="text-sm text-[color:var(--muted)]">
             A premium sweets & snacks store crafted for celebrations, gifting,

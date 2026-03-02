@@ -75,7 +75,7 @@ export function HeroCarousel() {
   }, [slides.length]);
 
   return (
-    <section className="relative h-[100svh] min-h-[680px] overflow-hidden bg-[#070606]">
+    <section className="relative h-[100svh] min-h-[680px] overflow-hidden bg-[color:var(--bg)]">
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -93,11 +93,12 @@ export function HeroCarousel() {
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover opacity-90 [filter:brightness(0.55)_contrast(1.15)_saturate(1.1)]"
+                className="object-cover opacity-[var(--hero-image-opacity)]"
+                style={{ filter: "var(--hero-image-filter)" }}
               />
             </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,106,61,0.18),transparent_55%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.45),rgba(0,0,0,0.72))]" />
+            <div className="absolute inset-0 opacity-[var(--hero-radial-opacity)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,106,61,1),transparent_55%)]" />
+            <div className="absolute inset-0 opacity-[var(--hero-linear-opacity)] bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.45),rgba(0,0,0,0.72))]" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -110,7 +111,7 @@ export function HeroCarousel() {
       <div className="relative mx-auto h-full max-w-6xl px-4 sm:px-6">
         <div className="relative h-full">
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-0 top-0 h-full w-full bg-[linear-gradient(to_right,rgba(0,0,0,0.55),transparent_45%,rgba(0,0,0,0.55))]" />
+            <div className="absolute left-0 top-0 h-full w-full opacity-[var(--hero-vignette-opacity)] bg-[linear-gradient(to_right,rgba(0,0,0,0.55),transparent_45%,rgba(0,0,0,0.55))]" />
           </div>
 
           <div className="pointer-events-none absolute left-0 right-0 top-0 h-full">
