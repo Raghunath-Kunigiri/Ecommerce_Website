@@ -18,6 +18,11 @@ type Props = {
 
 export function ProductCard({ product, showPrice = true }: Props) {
   const add = useCart((s) => s.add);
+  const setQuantity = useCart((s) => s.setQuantity);
+  const remove = useCart((s) => s.remove);
+  const inCartQty = useCart(
+    (s) => s.items.find((i) => i.productId === product.id)?.quantity ?? 0,
+  );
   const rawSrc = product.images[0] ?? "";
   const src =
     rawSrc && (rawSrc.startsWith("/") || rawSrc.startsWith("http"))
@@ -99,14 +104,55 @@ export function ProductCard({ product, showPrice = true }: Props) {
         </div>
 
         <div className="pt-2">
-          <Button
-            onClick={() => add(product, 1)}
-            className="w-full"
-            variant="secondary"
-          >
-            <Plus />
-            Add to cart
-          </Button>
+          {inCartQty > 0 ? (
+            <div className="flex items-center justify-between gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-2">
+              <div className="min-w-0">
+                <div className="text-xs font-semibold text-[color:var(--fg)]">
+                  In cart: <span className="tabular-nums">{inCartQty}</span>
+                </div>
+                <div className="text-[10px] text-[color:var(--muted)]">
+                  Tap + to add more, − to remove
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  size="xs"
+                  variant="outline"
+                  className="h-8 w-8 rounded-full border-red-500/30 bg-white/60 p-0 text-red-600 hover:bg-red-50 hover:text-red-700"
+                  aria-label="Decrease quantity"
+                  onClick={() => {
+                    if (inCartQty <= 1) remove(product.id);
+                    else setQuantity(product.id, inCartQty - 1);
+                  }}
+                >
+                  −
+                </Button>
+                <div className="w-7 text-center text-sm font-semibold tabular-nums text-[color:var(--fg)]">
+                  {inCartQty}
+                </div>
+                <Button
+                  type="button"
+                  size="xs"
+                  variant="outline"
+                  className="h-8 w-8 rounded-full border-emerald-600/30 bg-white/60 p-0 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+                  aria-label="Increase quantity"
+                  onClick={() => add(product, 1)}
+                >
+                  +
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <Button
+              onClick={() => add(product, 1)}
+              className="w-full"
+              variant="secondary"
+            >
+              <Plus />
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </motion.div>
