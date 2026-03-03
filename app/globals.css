@@ -20,8 +20,8 @@
   --hero-image-filter: none;
   --hero-image-opacity: 1;
   --hero-radial-opacity: 0.08;
-  --hero-linear-opacity: 0.12;
-  --hero-vignette-opacity: 0.10;
+  --hero-linear-opacity: 0;
+  --hero-vignette-opacity: 0;
 }
 
 :root[data-theme="dark"] {
@@ -40,12 +40,12 @@
   --brand-strong: #ff6a3d;
   --brand-soft: rgba(255, 122, 81, 0.16);
 
-  /* Hero (homepage carousel) — moody in dark mode */
-  --hero-image-filter: brightness(0.55) contrast(1.15) saturate(1.1);
-  --hero-image-opacity: 0.9;
-  --hero-radial-opacity: 0.18;
-  --hero-linear-opacity: 0.75;
-  --hero-vignette-opacity: 0.55;
+  /* Hero (homepage carousel) — show direct images in dark mode */
+  --hero-image-filter: none;
+  --hero-image-opacity: 1;
+  --hero-radial-opacity: 0.08;
+  --hero-linear-opacity: 0;
+  --hero-vignette-opacity: 0;
 }
 
 @theme inline {
@@ -79,6 +79,28 @@ body {
   color: var(--fg);
   font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system,
     Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Prevent accidental horizontal scrolling on mobile */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 h1,

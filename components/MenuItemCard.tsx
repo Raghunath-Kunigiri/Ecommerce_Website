@@ -40,7 +40,7 @@ export function MenuItemCard({ item, index }: { item: MenuItem; index: number })
             )}
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--brand-soft)] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--brand-soft)] via-transparent to-transparent opacity-0 transition-opacity duration-300 md:group-hover:opacity-100" />
       </div>
 
       <div className="space-y-1.5 p-5">

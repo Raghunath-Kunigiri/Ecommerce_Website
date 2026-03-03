@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { Providers } from "@/components/providers";
+import { MobileBottomNav } from "@/components/site/mobile-bottom-nav";
 
 const fontSans = Inter({
   variable: "--font-body",
@@ -41,9 +42,16 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontDisplay.variable} min-h-full bg-[color:var(--bg)] text-[color:var(--fg)] antialiased`}
       >
         <Providers>
-          <Navbar />
-          <main className="min-h-[calc(100vh-4rem)]">{children}</main>
-          <Footer />
+          <div className="mx-auto min-h-screen w-full max-w-[430px] overflow-hidden bg-[color:var(--bg)] shadow-2xl md:max-w-none md:overflow-visible md:bg-transparent md:shadow-none">
+            <Navbar />
+            <main className="min-h-[calc(100vh-4rem)] pb-28 md:pb-0">
+              {children}
+            </main>
+            <div className="hidden md:block">
+              <Footer />
+            </div>
+          </div>
+          <MobileBottomNav />
         </Providers>
       </body>
     </html>

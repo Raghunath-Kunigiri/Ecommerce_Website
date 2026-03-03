@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import type { Category, Product } from "@/lib/types";
 import { CategoryFilter } from "@/components/products/category-filter";
-import { ProductGrid } from "@/components/products/product-grid";
+import { ProductCard } from "@/components/products/product-card";
 
 export function FeaturedProducts({
   categories,
@@ -51,7 +51,11 @@ export function FeaturedProducts({
       </div>
 
       <div className="mt-8">
-        <ProductGrid products={featured} />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((p) => (
+            <ProductCard key={p.id} product={p} showPrice={false} />
+          ))}
+        </div>
       </div>
     </section>
   );

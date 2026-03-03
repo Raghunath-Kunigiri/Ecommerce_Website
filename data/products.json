@@ -317,7 +317,7 @@
       "description": "బెల్లం కజ్జికాయలు",
       "price": 23900,
       "category": "sweets",
-      "images": ["public/Items_Images/Kajjikayalu.png"],
+      "images": ["/Items_Images/Kajjikayalu.png"],
       "tags": ["Balaji Snacks"]
     },
     {

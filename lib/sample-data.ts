@@ -1,9 +1,50 @@
-import type { Category, Product } from "@/lib/types";
+import type { Category, CategorySlug, Product } from "@/lib/types";
 
 import menu from "@/data/products.json";
 
 // Next/Image handles URL encoding internally; keep paths unencoded to avoid double-encoding.
 const itemImage = (filename: string) => `/Items_Images/${filename}`;
+
+type MenuCategoryJson = {
+  id?: unknown;
+  name?: unknown;
+  slug?: unknown;
+};
+
+type MenuProductJson = {
+  id?: unknown;
+  name?: unknown;
+  nameTe?: unknown;
+  slug?: unknown;
+  description?: unknown;
+  price?: unknown;
+  category?: unknown;
+  images?: unknown;
+  tags?: unknown;
+  isFeatured?: unknown;
+};
+
+type MenuJson = {
+  categories?: unknown;
+  products?: unknown;
+};
+
+function normalizeImagePath(input: unknown): string {
+  const raw = typeof input === "string" ? input.trim() : "";
+  if (!raw) return "";
+  // Next public assets must be referenced from root (no "public/" prefix)
+  const noPublic = raw.replace(/^public\//, "/");
+  // Normalize windows slashes
+  const normalized = noPublic.replaceAll("\\", "/");
+  // Ensure leading slash for local assets
+  if (normalized.startsWith("http://") || normalized.startsWith("https://")) return normalized;
+  return normalized.startsWith("/") ? normalized : `/${normalized}`;
+}
+
+function normalizeImages(input: unknown): string[] {
+  if (!Array.isArray(input)) return [];
+  return input.map(normalizeImagePath).filter(Boolean);
+}
 
 const imagesBySlug: Record<string, string[]> = {
   // Rotti
@@ -50,8 +91,9 @@ const imagesBySlug: Record<string, string[]> = {
   kajjikayalu: [itemImage("Kajjikayalu.png")],
   ariselu: [itemImage("Ariselu.png")],
   "purnam-boorelu": [itemImage("Purnam Boorelu.png")],
-  "kobbari-boorelu": [itemImage("Kobbari Boorelu.png")],
-  "kova-boorelu": [itemImage("Kova Boorelu.png")],
+  // Fallback to the available boorelu photo until dedicated files exist
+  "kobbari-boorelu": [itemImage("Purnam Boorelu.png")],
+  "kova-boorelu": [itemImage("Purnam Boorelu.png")],
 
   // Special items
   "ariselu-special": [itemImage("Ariselu.png")],
@@ -66,33 +108,61 @@ const imagesBySlug: Record<string, string[]> = {
   "ariselu-festival": [itemImage("Ariselu.png")],
 };
 
-export const categories: Category[] = (menu.categories as any[]).map((c) => ({
-  id: String(c.id),
-  name: String(c.name),
-  slug: c.slug,
+const menuData = menu as unknown as MenuJson;
+const rawCategories = Array.isArray(menuData.categories)
+  ? (menuData.categories as MenuCategoryJson[])
+  : [];
+const rawProducts = Array.isArray(menuData.products)
+  ? (menuData.products as MenuProductJson[])
+  : [];
+
+function asCategorySlug(input: unknown): CategorySlug {
+  const s = String(input ?? "");
+  const ok: CategorySlug[] = [
+    "sweets",
+    "snacks",
+    "namkeen",
+    "bakery",
+    "chocolates",
+    "beverages",
+    "rotti",
+    "hot-items",
+    "podulu",
+    "special-items",
+    "festival-specials",
+  ];
+  return (ok.includes(s as CategorySlug) ? (s as CategorySlug) : "sweets") as CategorySlug;
+}
+
+export const categories: Category[] = rawCategories.map((c) => ({
+  id: String(c.id ?? ""),
+  name: String(c.name ?? ""),
+  slug: asCategorySlug(c.slug),
 }));
 
-export const products: Product[] = (menu.products as any[]).map((p) => {
+export const products: Product[] = rawProducts.map((p) => {
   const rawDesc = String(p.description ?? "");
-  const rawNameTe = typeof p.nameTe === "string" ? p.nameTe : undefined;
+  const rawNameTe = typeof p.nameTe === "string" ? (p.nameTe as string) : undefined;
   const looksTelugu = /[\u0C00-\u0C7F]/.test(rawDesc);
+  const slug = String(p.slug ?? "");
+  const tags = Array.isArray(p.tags) ? (p.tags as unknown[]).map(String) : [];
 
   return {
-    id: String(p.id),
-    name: String(p.name),
+    id: String(p.id ?? ""),
+    name: String(p.name ?? ""),
     nameTe: rawNameTe ?? (looksTelugu ? rawDesc : undefined),
-    slug: String(p.slug),
+    slug,
     description: looksTelugu ? "" : rawDesc,
     price: Number(p.price ?? 0),
-    category: p.category,
+    category: asCategorySlug(p.category),
     images:
-      imagesBySlug[String(p.slug)] ??
-      (Array.isArray(p.images) ? p.images : []),
-    tags: Array.isArray(p.tags) ? p.tags : [],
+      imagesBySlug[slug] ??
+      normalizeImages(p.images),
+    tags,
     isFeatured:
       Boolean(p.isFeatured) ||
-      (Array.isArray(p.tags) && p.tags.includes("Best Seller")) ||
-      (Array.isArray(p.tags) && p.tags.includes("Festive")),
+      tags.includes("Best Seller") ||
+      tags.includes("Festive"),
   };
 });
 

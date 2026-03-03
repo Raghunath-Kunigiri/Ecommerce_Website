@@ -13,11 +13,26 @@ import { Badge } from "@/components/ui/badge";
 
 type Props = {
   product: Product;
+  showPrice?: boolean;
 };
 
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, showPrice = true }: Props) {
   const add = useCart((s) => s.add);
-  const src = product.images[0] ?? "";
+  const rawSrc = product.images[0] ?? "";
+  const src =
+    rawSrc && (rawSrc.startsWith("/") || rawSrc.startsWith("http"))
+      ? rawSrc
+      : product.category === "rotti"
+        ? "/products/placeholder-rotti.svg"
+        : product.category === "hot-items"
+          ? "/products/placeholder-hot-items.svg"
+          : product.category === "podulu"
+            ? "/products/placeholder-podulu.svg"
+            : product.category === "special-items"
+              ? "/products/placeholder-special.svg"
+              : product.category === "festival-specials"
+                ? "/products/placeholder-festival.svg"
+                : "/products/placeholder-sweets.svg";
   const isWikimedia = src.startsWith("https://upload.wikimedia.org/");
 
   return (
@@ -44,7 +59,7 @@ export function ProductCard({ product }: Props) {
               unoptimized={isWikimedia}
             />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--brand-soft)] via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--brand-soft)] via-transparent to-transparent opacity-0 transition-opacity md:group-hover:opacity-100" />
           <div className="absolute left-4 top-4 flex flex-wrap gap-2">
             {product.tags?.slice(0, 2).map((t) => (
               <Badge key={t} variant="brand" className="backdrop-blur">
@@ -73,12 +88,14 @@ export function ProductCard({ product }: Props) {
               {product.description || "Freshly made at Balaji Snacks — Anantapur."}
             </p>
           </div>
-          <div className="shrink-0 text-right">
-            <div className="text-sm font-semibold text-[color:var(--fg)]">
-              {formatMoney(product.price)}
+          {showPrice ? (
+            <div className="shrink-0 text-right">
+              <div className="text-sm font-semibold text-[color:var(--fg)]">
+                {formatMoney(product.price)}
+              </div>
+              <div className="text-xs text-[color:var(--muted)]">per pack</div>
             </div>
-            <div className="text-xs text-[color:var(--muted)]">per pack</div>
-          </div>
+          ) : null}
         </div>
 
         <div className="pt-2">

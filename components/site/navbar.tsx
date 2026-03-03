@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { ShoppingBag, LogIn, LogOut } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, ShoppingBag, LogIn, LogOut, X } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -24,11 +25,16 @@ export function Navbar() {
   const cartCount = useCart((s) => s.count());
   const hasHydrated = useCart((s) => s.hasHydrated);
   const { data } = useSession();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[color:var(--bg)]/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="group inline-flex items-center gap-2">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2"
+          onClick={() => setMobileOpen(false)}
+        >
           <div className="relative size-10 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)]">
             <Image
               src="/Items_Images/Logo2.jpeg"
@@ -77,6 +83,17 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="sm:hidden"
+            aria-label="Open menu"
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu />
+          </Button>
+
           <Button asChild variant="secondary" className="hidden sm:inline-flex">
             <Link href="/products">Shop now</Link>
           </Button>
@@ -113,6 +130,126 @@ export function Navbar() {
           </Button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {mobileOpen ? (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              className="fixed inset-0 z-40 cursor-default bg-black/30 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="fixed left-4 right-4 top-[4.5rem] z-50 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] shadow-[0_30px_80px_-55px_rgba(0,0,0,0.40)]"
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center justify-between border-b border-[color:var(--border)] px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <div className="relative size-9 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)]">
+                    <Image
+                      src="/Items_Images/Logo2.jpeg"
+                      alt="Balaji Snacks"
+                      fill
+                      sizes="36px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="text-sm font-semibold tracking-tight text-[color:var(--fg)]">
+                    Balaji Snacks
+                  </div>
+                </div>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Close menu"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <X />
+                </Button>
+              </div>
+
+              <div className="space-y-1 p-2">
+                {navItems.map((item) => {
+                  const active =
+                    item.href === "/products"
+                      ? pathname?.startsWith("/products")
+                      : pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-[color:var(--fg)]",
+                        active
+                          ? "bg-[color:var(--surface-2)]"
+                          : "hover:bg-[color:var(--surface-2)]",
+                      )}
+                    >
+                      <span>{item.label}</span>
+                      <span className="text-xs text-[color:var(--muted)]">→</span>
+                    </Link>
+                  );
+                })}
+                <Link
+                  href="/cart"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-[color:var(--fg)] hover:bg-[color:var(--surface-2)]"
+                >
+                  <span>Cart</span>
+                  {hasHydrated && cartCount > 0 ? (
+                    <span className="rounded-full bg-[color:var(--brand)] px-2 py-1 text-[10px] font-semibold text-white">
+                      {cartCount}
+                    </span>
+                  ) : (
+                    <span className="text-xs text-[color:var(--muted)]">→</span>
+                  )}
+                </Link>
+              </div>
+
+              <div className="grid gap-2 border-t border-[color:var(--border)] p-4">
+                <Button asChild className="w-full">
+                  <Link href="/products" onClick={() => setMobileOpen(false)}>
+                    Shop now
+                  </Link>
+                </Button>
+                {data?.user ? (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => signOut({ callbackUrl: "/" })}
+                  >
+                    <LogOut />
+                    Sign out
+                  </Button>
+                ) : (
+                  <Button asChild variant="outline" className="w-full">
+                    <Link
+                      href="/login"
+                      className="gap-2"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <LogIn />
+                      Sign in
+                    </Link>
+                  </Button>
+                )}
+              </div>
+            </motion.div>
+          </>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

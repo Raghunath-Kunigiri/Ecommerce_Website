@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,41 +13,20 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-
-  const initial = useMemo<Theme>(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") return "light";
     const saved = window.localStorage.getItem("theme");
-    if (saved === "light" || saved === "dark") return saved;
-    return "light";
-  }, []);
-
-  const [theme, setTheme] = useState<Theme>(initial);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    return saved === "dark" || saved === "light" ? saved : "light";
+  });
 
   useEffect(() => {
     applyTheme(theme);
     try {
-      window.localStorage.setItem("theme", theme);
+      if (typeof window !== "undefined") window.localStorage.setItem("theme", theme);
     } catch {
       // ignore
     }
   }, [theme]);
-
-  if (!mounted) {
-    return (
-      <Button
-        type="button"
-        variant="outline"
-        size="icon"
-        aria-label="Toggle theme"
-        className="opacity-0"
-      />
-    );
-  }
 
   const next: Theme = theme === "dark" ? "light" : "dark";
 
@@ -58,6 +37,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(next)}
       aria-label={`Switch to ${next} mode`}
+      suppressHydrationWarning
     >
       {theme === "dark" ? <Sun /> : <Moon />}
     </Button>
