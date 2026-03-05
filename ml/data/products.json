@@ -1,0 +1,203 @@
+[
+  {
+    "id": "saddha-rotti",
+    "name": "Saddha Rotti",
+    "category": "Rotti",
+    "taste": "Mild",
+    "texture": "Soft",
+    "ingredients": ["rice flour", "salt", "oil"],
+    "festival": false,
+    "priceRange": "₹"
+  },
+  {
+    "id": "nuvvula-rotti",
+    "name": "Nuvvula Rotti",
+    "category": "Rotti",
+    "taste": "Mild",
+    "texture": "Soft",
+    "ingredients": ["rice flour", "sesame seeds", "ghee"],
+    "festival": false,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "ragi-rotti",
+    "name": "Ragi Rotti",
+    "category": "Rotti",
+    "taste": "Mild",
+    "texture": "Soft",
+    "ingredients": ["ragi flour", "onion", "chilli", "coriander"],
+    "festival": false,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "chekkalu",
+    "name": "Chekkalu",
+    "category": "Snacks",
+    "taste": "Spicy",
+    "texture": "Crispy",
+    "ingredients": ["rice flour", "chilli", "curry leaves", "garlic"],
+    "festival": false,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "madduru-vada",
+    "name": "Madduru Vada",
+    "category": "Snacks",
+    "taste": "Spicy",
+    "texture": "Crispy",
+    "ingredients": ["rice flour", "semolina", "onion", "coconut"],
+    "festival": false,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "mixture",
+    "name": "Mixture",
+    "category": "Snacks",
+    "taste": "Spicy",
+    "texture": "Crunchy",
+    "ingredients": ["sev", "boondi", "peanuts", "cashews", "spices"],
+    "festival": false,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "hot-boondi",
+    "name": "Hot Boondi",
+    "category": "Snacks",
+    "taste": "Spicy",
+    "texture": "Crunchy",
+    "ingredients": ["besan", "oil", "chilli", "garlic"],
+    "festival": false,
+    "priceRange": "₹"
+  },
+  {
+    "id": "sunnundalu",
+    "name": "Sunnundalu",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Soft",
+    "ingredients": ["urad dal", "ghee", "sugar"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "besan-laddu",
+    "name": "Besan Laddu",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Soft",
+    "ingredients": ["besan", "ghee", "sugar", "cardamom"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "khajalu-sugar",
+    "name": "Khajalu (Sugar)",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Crispy",
+    "ingredients": ["maida", "sugar syrup", "ghee"],
+    "festival": true,
+    "priceRange": "₹₹₹"
+  },
+  {
+    "id": "boondi-laddu-sugar",
+    "name": "Boondi Laddu (Sugar)",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Soft",
+    "ingredients": ["besan", "sugar", "ghee", "dry fruits"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "kajjikayalu",
+    "name": "Kajjikayalu",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Crispy",
+    "ingredients": ["maida", "coconut", "sugar"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "ariselu",
+    "name": "Ariselu",
+    "category": "Sweets",
+    "taste": "Sweet",
+    "texture": "Soft",
+    "ingredients": ["rice flour", "jaggery", "ghee"],
+    "festival": true,
+    "priceRange": "₹₹₹"
+  },
+  {
+    "id": "karivepaku-podi",
+    "name": "Karivepaku Podi",
+    "category": "Powders",
+    "taste": "Spicy",
+    "texture": "Powder",
+    "ingredients": ["curry leaves", "chilli", "garlic"],
+    "festival": false,
+    "priceRange": "₹"
+  },
+  {
+    "id": "idli-karam",
+    "name": "Idli Karam",
+    "category": "Powders",
+    "taste": "Spicy",
+    "texture": "Powder",
+    "ingredients": ["chilli", "lentils", "garlic"],
+    "festival": false,
+    "priceRange": "₹"
+  },
+  {
+    "id": "pulihora-podi",
+    "name": "Pulihora Podi",
+    "category": "Powders",
+    "taste": "Spicy",
+    "texture": "Powder",
+    "ingredients": ["tamarind", "chilli", "mustard seeds"],
+    "festival": false,
+    "priceRange": "₹"
+  },
+  {
+    "id": "ariselu-special",
+    "name": "Ariselu (Special)",
+    "category": "Special Items",
+    "taste": "Sweet",
+    "texture": "Soft",
+    "ingredients": ["rice flour", "jaggery", "ghee"],
+    "festival": true,
+    "priceRange": "₹₹₹"
+  },
+  {
+    "id": "janthikalu-special",
+    "name": "Janthikalu (Special)",
+    "category": "Special Items",
+    "taste": "Spicy",
+    "texture": "Crunchy",
+    "ingredients": ["rice flour", "chilli", "sesame", "cumin"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "murukulu-special",
+    "name": "Murukulu (Special)",
+    "category": "Special Items",
+    "taste": "Spicy",
+    "texture": "Crunchy",
+    "ingredients": ["rice flour", "chilli", "butter"],
+    "festival": true,
+    "priceRange": "₹₹"
+  },
+  {
+    "id": "mixture-special",
+    "name": "Mixture (Special)",
+    "category": "Special Items",
+    "taste": "Spicy",
+    "texture": "Crunchy",
+    "ingredients": ["sev", "boondi", "nuts", "spices"],
+    "festival": true,
+    "priceRange": "₹₹"
+  }
+]
+

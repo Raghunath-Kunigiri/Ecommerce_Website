@@ -5,11 +5,13 @@ import { ShoppingBag } from "lucide-react";
 
 import type { Product } from "@/lib/types";
 import { useCart } from "@/lib/store/cart";
+import { useCartPopup } from "@/components/cart/cart-popup-context";
 import { Button } from "@/components/ui/button";
 import { QuantitySelector } from "@/components/products/quantity-selector";
 
 export function ProductPurchase({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
+  const openPopup = useCartPopup().openPopup;
   const [qty, setQty] = useState(1);
 
   return (
@@ -18,7 +20,10 @@ export function ProductPurchase({ product }: { product: Product }) {
       <Button
         size="lg"
         className="sm:flex-1"
-        onClick={() => add(product, qty)}
+        onClick={() => {
+          add(product, qty);
+          openPopup();
+        }}
       >
         <ShoppingBag />
         Add to cart

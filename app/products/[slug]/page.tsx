@@ -6,6 +6,7 @@ import { formatMoney } from "@/lib/sample-data";
 import { getProductBySlug } from "@/lib/catalog";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPurchase } from "@/components/products/product-purchase";
+import { RecommendedStrip } from "@/components/products/recommended-strip";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -79,6 +80,7 @@ export default async function ProductDetailsPage({ params }: Props) {
           </div>
         </div>
       </div>
+      <RecommendedStrip productSlug={product.slug} />
     </div>
   );
 }

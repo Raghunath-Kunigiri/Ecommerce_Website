@@ -20,10 +20,45 @@ export function ProductsBrowser({ categories, products }: Props) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    if (!q) {
+      return products.filter(
+        (p) => category === "all" || p.category === category,
+      );
+    }
+
+    const stopwords = new Set([
+      "i", "need", "want", "something", "get", "me", "please", "give", "show",
+      "looking", "for", "a", "an", "the", "and", "or", "to", "in", "on",
+    ]);
+    const words = q
+      .split(/\s+/)
+      .map((w) => w.replace(/[^\w\u0C00-\u0C7F]/g, "").toLowerCase())
+      .filter((w) => w.length > 0 && !stopwords.has(w));
+
+    const keywordToCategory: Record<string, string> = {
+      hot: "hot-items",
+      spicy: "hot-items",
+      crunchy: "hot-items",
+      snacks: "hot-items",
+      namkeen: "hot-items",
+      sweet: "sweets",
+      sweets: "sweets",
+      mithai: "sweets",
+      laddu: "sweets",
+      rotti: "rotti",
+      roti: "rotti",
+      rottis: "rotti",
+      powder: "podulu",
+      podulu: "podulu",
+      podi: "podulu",
+      special: "special-items",
+      festival: "festival-specials",
+      festive: "festival-specials",
+    };
+
     return products.filter((p) => {
       const categoryOk = category === "all" ? true : p.category === category;
       if (!categoryOk) return false;
-      if (!q) return true;
 
       const hay = [
         p.name,
@@ -35,7 +70,14 @@ export function ProductsBrowser({ categories, products }: Props) {
         .join(" ")
         .toLowerCase();
 
-      return hay.includes(q);
+      if (hay.includes(q)) return true;
+
+      for (const word of words) {
+        if (hay.includes(word)) return true;
+        const mapped = keywordToCategory[word];
+        if (mapped && p.category === mapped) return true;
+      }
+      return false;
     });
   }, [category, products, query]);
 

@@ -8,6 +8,7 @@ import { Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/sample-data";
 import { useCart } from "@/lib/store/cart";
+import { useCartPopup } from "@/components/cart/cart-popup-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -18,6 +19,7 @@ type Props = {
 
 export function ProductCard({ product, showPrice = true }: Props) {
   const add = useCart((s) => s.add);
+  const openPopup = useCartPopup().openPopup;
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
   const inCartQty = useCart(
@@ -110,9 +112,6 @@ export function ProductCard({ product, showPrice = true }: Props) {
                 <div className="text-xs font-semibold text-[color:var(--fg)]">
                   In cart: <span className="tabular-nums">{inCartQty}</span>
                 </div>
-                <div className="text-[10px] text-[color:var(--muted)]">
-                  Tap + to add more, − to remove
-                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Button
@@ -137,7 +136,10 @@ export function ProductCard({ product, showPrice = true }: Props) {
                   variant="outline"
                   className="h-8 w-8 rounded-full border-emerald-600/30 bg-white/60 p-0 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
                   aria-label="Increase quantity"
-                  onClick={() => add(product, 1)}
+                  onClick={() => {
+                    add(product, 1);
+                    openPopup();
+                  }}
                 >
                   +
                 </Button>
@@ -145,7 +147,10 @@ export function ProductCard({ product, showPrice = true }: Props) {
             </div>
           ) : (
             <Button
-              onClick={() => add(product, 1)}
+              onClick={() => {
+              add(product, 1);
+              openPopup();
+            }}
               className="w-full"
               variant="secondary"
             >

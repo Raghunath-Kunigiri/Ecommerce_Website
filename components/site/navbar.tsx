@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/store/cart";
+import { useCartPopup } from "@/components/cart/cart-popup-context";
 
 const navItems = [
   { href: "/menu", label: "Menu" },
@@ -24,6 +25,7 @@ export function Navbar() {
   const pathname = usePathname();
   const cartCount = useCart((s) => s.count());
   const hasHydrated = useCart((s) => s.hasHydrated);
+  const openCartPopup = useCartPopup().openPopup;
   const { data } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -118,15 +120,20 @@ export function Navbar() {
               </Link>
             </Button>
           )}
-          <Button asChild variant="outline" size="icon" aria-label="Cart">
-            <Link href="/cart" className="relative">
-              <ShoppingBag />
-              {hasHydrated && cartCount > 0 ? (
-                <span className="absolute -right-2 -top-2 grid min-w-5 place-items-center rounded-full bg-[color:var(--brand)] px-1.5 text-[10px] font-semibold leading-5 text-white">
-                  {cartCount}
-                </span>
-              ) : null}
-            </Link>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            aria-label="Cart"
+            onClick={openCartPopup}
+            className="relative"
+          >
+            <ShoppingBag />
+            {hasHydrated && cartCount > 0 ? (
+              <span className="absolute -right-2 -top-2 grid min-w-5 place-items-center rounded-full bg-[color:var(--brand)] px-1.5 text-[10px] font-semibold leading-5 text-white">
+                {cartCount}
+              </span>
+            ) : null}
           </Button>
         </div>
       </div>
