@@ -167,3 +167,35 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+// Guest checkout orders (no account required)
+enum GuestOrderStatus {
+  CONFIRMED
+  PREPARING
+  PACKED
+  SHIPPED
+  DELIVERED
+}
+
+model GuestOrder {
+  id           String           @id @default(cuid())
+  orderId      String           @unique // BLJ + 6 digits, e.g. BLJ847293
+  customerName String
+  email        String
+  phone        String
+  address      String
+  city         String
+  pincode      String
+  items        Json             // [{ productId, name, price, quantity, image }]
+  subtotal     Int              // in paise
+  deliveryFee  Int              // in paise
+  total        Int              // in paise
+  status       GuestOrderStatus @default(CONFIRMED)
+  notes        String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@index([orderId])
+  @@index([status])
+  @@index([createdAt])
+}
+

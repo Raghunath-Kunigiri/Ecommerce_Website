@@ -1,12 +1,12 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingBag, LogIn, LogOut, X } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
-import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -21,6 +21,8 @@ const navItems = [
   { href: "/#about", label: "About" },
 ];
 
+const SCROLL_THRESHOLD = 60;
+
 export function Navbar() {
   const pathname = usePathname();
   const cartCount = useCart((s) => s.count());
@@ -28,10 +30,32 @@ export function Navbar() {
   const openCartPopup = useCartPopup().openPopup;
   const { data } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (y > lastScrollY.current && y > SCROLL_THRESHOLD) {
+        setNavVisible(false);
+      } else {
+        setNavVisible(true);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[color:var(--bg)]/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <motion.header
+      initial={false}
+      animate={{ y: navVisible ? 0 : -120 }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      className="fixed left-4 right-4 top-4 z-50 md:left-6 md:right-6 md:top-5"
+    >
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg)]/95 shadow-lg backdrop-blur-md">
+        <div className="flex h-14 items-center justify-between px-4 sm:px-6 md:h-16">
         <Link
           href="/"
           className="group inline-flex items-center gap-2"
@@ -136,6 +160,7 @@ export function Navbar() {
             ) : null}
           </Button>
         </div>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -153,7 +178,7 @@ export function Navbar() {
             <motion.div
               role="dialog"
               aria-modal="true"
-              className="fixed left-4 right-4 top-[4.5rem] z-50 overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] shadow-[0_30px_80px_-55px_rgba(0,0,0,0.40)]"
+              className="fixed left-4 right-4 top-20 z-50 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)] shadow-lg"
               initial={{ opacity: 0, y: -12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.98 }}
@@ -257,7 +282,7 @@ export function Navbar() {
           </>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
 

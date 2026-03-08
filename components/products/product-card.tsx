@@ -9,6 +9,7 @@ import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/sample-data";
 import { useCart } from "@/lib/store/cart";
 import { useCartPopup } from "@/components/cart/cart-popup-context";
+import { useToast } from "@/components/ui/toast-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -22,6 +23,7 @@ export function ProductCard({ product, showPrice = true }: Props) {
   const openPopup = useCartPopup().openPopup;
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
+  const { showToast } = useToast();
   const inCartQty = useCart(
     (s) => s.items.find((i) => i.productId === product.id)?.quantity ?? 0,
   );
@@ -46,14 +48,16 @@ export function ProductCard({ product, showPrice = true }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileTap={{ scale: 0.99 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.45 }}
-      className="group relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] shadow-[0_30px_80px_-65px_rgba(0,0,0,0.30)]"
+      className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-1)]"
     >
       <Link href={`/products/${product.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden">
           <motion.div
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 260, damping: 22 }}
             className="absolute inset-0"
           >
@@ -107,54 +111,48 @@ export function ProductCard({ product, showPrice = true }: Props) {
 
         <div className="pt-2">
           {inCartQty > 0 ? (
-            <div className="flex items-center justify-between gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] px-3 py-2">
-              <div className="min-w-0">
-                <div className="text-xs font-semibold text-[color:var(--fg)]">
-                  In cart: <span className="tabular-nums">{inCartQty}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  size="xs"
-                  variant="outline"
-                  className="h-8 w-8 rounded-full border-red-500/30 bg-white/60 p-0 text-red-600 hover:bg-red-50 hover:text-red-700"
-                  aria-label="Decrease quantity"
-                  onClick={() => {
-                    if (inCartQty <= 1) remove(product.id);
-                    else setQuantity(product.id, inCartQty - 1);
-                  }}
-                >
-                  −
-                </Button>
-                <div className="w-7 text-center text-sm font-semibold tabular-nums text-[color:var(--fg)]">
-                  {inCartQty}
-                </div>
-                <Button
-                  type="button"
-                  size="xs"
-                  variant="outline"
-                  className="h-8 w-8 rounded-full border-emerald-600/30 bg-white/60 p-0 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
-                  aria-label="Increase quantity"
-                  onClick={() => {
-                    add(product, 1);
-                    openPopup();
-                  }}
-                >
-                  +
-                </Button>
-              </div>
+            <div className="flex min-h-[44px] touch-manipulation items-center gap-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1.5">
+              <span className="min-w-[2.5rem] px-2 text-center text-sm font-semibold tabular-nums text-[color:var(--fg)]">
+                {inCartQty} in cart
+              </span>
+              <Button
+                type="button"
+                size="icon"
+                variant="ghost"
+                className="h-8 min-h-[36px] min-w-[36px] shrink-0 rounded-xl text-[color:var(--muted)] hover:bg-[color:var(--border)]/50 hover:text-[color:var(--fg)] touch-manipulation"
+                aria-label="Decrease quantity"
+                onClick={() => {
+                  if (inCartQty <= 1) remove(product.id);
+                  else setQuantity(product.id, inCartQty - 1);
+                }}
+              >
+                −
+              </Button>
+              <Button
+                type="button"
+                size="icon"
+                className="ml-auto h-10 min-h-[44px] min-w-[44px] shrink-0 rounded-xl bg-[color:var(--brand)] text-white hover:bg-[color:var(--brand)]/90 touch-manipulation"
+                aria-label="Add more"
+                onClick={() => {
+                  add(product, 1);
+                  showToast("Added to cart!");
+                  openPopup();
+                }}
+              >
+                <Plus className="size-5" strokeWidth={2.5} />
+              </Button>
             </div>
           ) : (
             <Button
               onClick={() => {
-              add(product, 1);
-              openPopup();
-            }}
-              className="w-full"
+                add(product, 1);
+                showToast("Added to cart!");
+                openPopup();
+              }}
+              className="min-h-[44px] w-full touch-manipulation"
               variant="secondary"
             >
-              <Plus />
+              <Plus className="size-4 shrink-0" />
               Add to cart
             </Button>
           )}

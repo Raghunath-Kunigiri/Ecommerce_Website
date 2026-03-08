@@ -118,7 +118,7 @@ export function ProductsBrowser({ categories, products }: Props) {
       />
 
       {filtered.length === 0 ? (
-        <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-10 text-center">
+        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-10 text-center">
           <div className="text-lg font-semibold">No products found</div>
           <p className="mt-2 text-sm text-[color:var(--muted)]">
             Try a different search term or clear filters.

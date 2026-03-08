@@ -1,7 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubmitted(true);
+    setEmail("");
+  };
+
   return (
     <footer className="border-t border-[color:var(--border)] bg-[color:var(--bg)]">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
@@ -45,6 +58,29 @@ export function Footer() {
             <li>Mon–Sat • 10am–8pm</li>
             <li>Fast delivery • Secure payments</li>
           </ul>
+        </div>
+        <div className="space-y-3 md:col-span-3">
+          <div className="text-sm font-semibold tracking-tight">Get early access to festival specials</div>
+          {submitted ? (
+            <p className="text-sm text-[color:var(--muted)]">Thanks! We&apos;ll be in touch.</p>
+          ) : (
+            <form onSubmit={handleNewsletterSubmit} className="flex max-w-sm gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email"
+                className="min-h-[44px] flex-1 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-1)] px-4 py-2.5 text-sm text-[color:var(--fg)] placeholder:text-[color:var(--muted)] focus:outline-none focus:ring-2 focus:ring-[color:var(--ring)]"
+                aria-label="Email for newsletter"
+              />
+              <button
+                type="submit"
+                className="min-h-[44px] shrink-0 rounded-xl bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[color:var(--brand-strong)]"
+              >
+                Subscribe
+              </button>
+            </form>
+          )}
         </div>
       </div>
       <div className="border-t border-[color:var(--border)]">

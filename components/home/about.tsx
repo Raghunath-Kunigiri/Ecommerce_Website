@@ -20,7 +20,7 @@ const items = [
 
 export function About() {
   return (
-    <section id="about" className="border-y border-[color:var(--border)] bg-[color:var(--surface-1)]">
+    <section id="about" className="border-t border-[color:var(--border)] bg-[color:var(--surface-1)]">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
           <div className="space-y-3">
@@ -36,7 +36,7 @@ export function About() {
             {items.map((it) => (
               <div
                 key={it.title}
-                className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg)] p-5"
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg)] p-5"
               >
                 <it.icon className="size-5 text-[color:var(--brand-strong)]" />
                 <div className="pt-3 text-sm font-semibold">{it.title}</div>

@@ -13,11 +13,17 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") return "light";
+  // Start with a deterministic value so SSR and first client render match.
+  const [theme, setTheme] = useState<Theme>("light");
+
+  // After mount, read the real theme from localStorage and apply it.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
     const saved = window.localStorage.getItem("theme");
-    return saved === "dark" || saved === "light" ? saved : "light";
-  });
+    const initial: Theme = saved === "dark" || saved === "light" ? (saved as Theme) : "light";
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
 
   useEffect(() => {
     applyTheme(theme);
@@ -37,7 +43,6 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(next)}
       aria-label={`Switch to ${next} mode`}
-      suppressHydrationWarning
     >
       {theme === "dark" ? <Sun /> : <Moon />}
     </Button>

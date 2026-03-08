@@ -16,7 +16,7 @@ export function CategoryFilter({ categories, value, onChange }: Props) {
         type="button"
         onClick={() => onChange("all")}
         className={cn(
-          "rounded-full border border-[color:var(--border)] bg-[color:var(--surface-1)] px-4 py-2 text-sm text-[color:var(--muted)] transition-colors hover:text-[color:var(--fg)]",
+          "min-h-[44px] touch-manipulation rounded-full border border-[color:var(--border)] bg-[color:var(--surface-1)] px-4 py-2.5 text-sm text-[color:var(--muted)] transition-colors hover:text-[color:var(--fg)]",
           value === "all" &&
             "border-transparent bg-[color:var(--brand-soft)] text-[color:var(--brand-strong)]",
         )}
@@ -29,7 +29,7 @@ export function CategoryFilter({ categories, value, onChange }: Props) {
           type="button"
           onClick={() => onChange(c.slug)}
           className={cn(
-            "rounded-full border border-[color:var(--border)] bg-[color:var(--surface-1)] px-4 py-2 text-sm text-[color:var(--muted)] transition-colors hover:text-[color:var(--fg)]",
+            "min-h-[44px] touch-manipulation rounded-full border border-[color:var(--border)] bg-[color:var(--surface-1)] px-4 py-2.5 text-sm text-[color:var(--muted)] transition-colors hover:text-[color:var(--fg)]",
             value === c.slug &&
               "border-transparent bg-[color:var(--brand-soft)] text-[color:var(--brand-strong)]",
           )}

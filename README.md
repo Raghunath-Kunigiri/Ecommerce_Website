@@ -35,7 +35,7 @@ Create `.env.local` using `.env.example` and set at least:
 - `NEXTAUTH_URL=http://localhost:3000`
 - `DATABASE_URL` (Postgres)
 
-Optional (for full demo): Stripe + Cloudinary keys.
+Optional (for full demo): Stripe + Cloudinary keys. For **guest checkout** (COD): Resend + MSG91 (or Twilio) and `NEXT_PUBLIC_SITE_URL`; see `.env.example`.
 
 ### Run (dev)
 
@@ -51,20 +51,24 @@ Open `http://localhost:3000`.
 - **Products**: search + category filter + animated product cards
 - **Product details**: gallery + hover zoom + quantity + add to cart
 - **Cart**: quantity controls + subtotal + checkout button
-- **Checkout**: Stripe Checkout session creation (test mode)
+- **Checkout**: Guest COD (no account) or Stripe Checkout (test mode). Guest orders get Order ID (BLJ + 6 digits), email + SMS with tracking link.
+- **Order confirmed** (`/order-confirmed?id=BLJxxxxxx`): Success screen, copy Order ID, “Track my order”, WhatsApp support.
+- **Track order** (`/track`, or `/track?id=BLJxxxxxx`): Enter Order ID to see status timeline (Confirmed → Preparing → Packed → Shipped → Delivered) and items.
 - **Admin** (`/admin`):
   - Products: create/edit/hide/delete + images (Cloudinary upload or paste URL)
   - Categories: create/edit/delete (delete disabled when category has products)
-  - Orders: view list + update status
+  - Orders: Stripe orders + **Guest orders (COD)** with status dropdown; updating status sends email + SMS to customer
 
 ## Database + seed (for real admin demo)
 
 After setting `DATABASE_URL`:
 
 ```bash
-npm run db:push
+npm run db:push   # creates tables including GuestOrder for guest checkout
 npm run db:seed
 ```
+
+If you already ran `db:push` before guest checkout was added, run `npx prisma generate` (with dev server stopped if you see a file lock) then `npm run db:push` again.
 
 Seeded admin (unless you override env):
 

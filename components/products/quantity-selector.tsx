@@ -13,11 +13,11 @@ type Props = {
 
 export function QuantitySelector({ value, onChange, min = 1, max = 99 }: Props) {
   return (
-    <div className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1">
+    <div className="inline-flex min-h-[44px] touch-manipulation items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1">
       <Button
         variant="ghost"
         size="icon"
-        className="h-10 w-10"
+        className="h-10 min-h-[44px] min-w-[44px] w-10"
         onClick={() => onChange(Math.max(min, value - 1))}
         aria-label="Decrease quantity"
         type="button"
@@ -28,7 +28,7 @@ export function QuantitySelector({ value, onChange, min = 1, max = 99 }: Props) 
       <Button
         variant="ghost"
         size="icon"
-        className="h-10 w-10"
+        className="h-10 min-h-[44px] min-w-[44px] w-10"
         onClick={() => onChange(Math.min(max, value + 1))}
         aria-label="Increase quantity"
         type="button"

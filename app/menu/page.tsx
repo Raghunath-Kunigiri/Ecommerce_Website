@@ -1,10 +1,20 @@
+import type { Metadata } from "next";
 import { MenuHero } from "@/components/MenuHero";
 import { MenuSection } from "@/components/MenuSection";
 import { menu } from "@/data/menu";
+import { getBaseUrl, siteName } from "@/lib/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Menu",
-  description: "Balaji Snacks menu — rotti, snacks, sweets, podulu, and specials.",
+  description:
+    "Balaji Snacks full menu — rotti, snacks, sweets, podulu, hot items, and specials. Traditional mithai and namkeen.",
+  openGraph: {
+    title: `Menu • ${siteName}`,
+    description:
+      "Full menu: rotti, snacks, sweets, podulu, hot items, and specials. Traditional mithai and namkeen.",
+    url: `${getBaseUrl()}/menu`,
+  },
+  alternates: { canonical: `${getBaseUrl()}/menu` },
 };
 
 export default function MenuPage() {

@@ -79,27 +79,27 @@ export function CartView() {
               </div>
 
               <div className="mt-4 flex items-center justify-between">
-                <div className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1">
+                <div className="inline-flex items-center gap-1 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1.5">
+                  <span className="min-w-[2rem] px-2 text-center text-sm font-semibold tabular-nums">
+                    {i.quantity}
+                  </span>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9"
+                    className="h-8 w-8 shrink-0 rounded-lg text-[color:var(--muted)] hover:bg-[color:var(--border)]/50 hover:text-[color:var(--fg)]"
                     onClick={() => setQuantity(i.productId, i.quantity - 1)}
                     aria-label="Decrease quantity"
                   >
-                    <Minus />
+                    <Minus className="size-4" />
                   </Button>
-                  <div className="w-10 text-center text-sm font-semibold">
-                    {i.quantity}
-                  </div>
                   <Button
-                    variant="ghost"
+                    variant="default"
                     size="icon"
-                    className="h-9 w-9"
+                    className="h-9 w-9 shrink-0 rounded-lg bg-[color:var(--brand)] text-white hover:bg-[color:var(--brand)]/90"
                     onClick={() => setQuantity(i.productId, i.quantity + 1)}
-                    aria-label="Increase quantity"
+                    aria-label="Add more"
                   >
-                    <Plus />
+                    <Plus className="size-4" strokeWidth={2.5} />
                   </Button>
                 </div>
                 <div className="text-sm font-semibold">

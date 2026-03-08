@@ -186,12 +186,15 @@ export function CartPopup() {
                               {formatMoney(i.price)} each
                             </p>
                             <div className="mt-2 flex items-center justify-between gap-2">
-                              <div className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface-2)]">
+                              <div className="inline-flex items-center gap-0.5 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-1">
+                                <span className="min-w-[1.75rem] text-center text-xs font-semibold tabular-nums">
+                                  {i.quantity}
+                                </span>
                                 <Button
                                   type="button"
                                   variant="ghost"
                                   size="icon"
-                                  className="h-8 w-8"
+                                  className="h-7 w-7 shrink-0 rounded-lg text-[color:var(--muted)] hover:bg-[color:var(--border)]/50 hover:text-[color:var(--fg)]"
                                   aria-label="Decrease"
                                   onClick={() =>
                                     setQuantity(
@@ -200,22 +203,19 @@ export function CartPopup() {
                                     )
                                   }
                                 >
-                                  <Minus className="size-3.5" />
+                                  <Minus className="size-3" />
                                 </Button>
-                                <span className="min-w-[2rem] text-center text-sm font-medium tabular-nums">
-                                  {i.quantity}
-                                </span>
                                 <Button
                                   type="button"
-                                  variant="ghost"
+                                  variant="default"
                                   size="icon"
-                                  className="h-8 w-8"
-                                  aria-label="Increase"
+                                  className="h-8 w-8 shrink-0 rounded-lg bg-[color:var(--brand)] text-white hover:bg-[color:var(--brand)]/90"
+                                  aria-label="Add more"
                                   onClick={() =>
                                     setQuantity(i.productId, i.quantity + 1)
                                   }
                                 >
-                                  <Plus className="size-3.5" />
+                                  <Plus className="size-3.5" strokeWidth={2.5} />
                                 </Button>
                               </div>
                               <span className="text-sm font-semibold tabular-nums">

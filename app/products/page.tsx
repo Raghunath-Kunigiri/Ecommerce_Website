@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import { ProductsBrowser } from "@/components/products/products-browser";
 import { getCategories, getProducts } from "@/lib/catalog";
+import { getBaseUrl, siteName, defaultKeywords } from "@/lib/seo";
 
-export const metadata = {
-  title: "Products",
+export const metadata: Metadata = {
+  title: "Shop sweets & snacks",
+  description:
+    "Browse handcrafted Indian sweets, namkeen, snacks, and gift boxes. Fresh mithai and traditional treats from Balaji Sweets.",
+  keywords: [...defaultKeywords, "buy sweets online", "order mithai", "namkeen delivery"],
+  openGraph: {
+    title: `Shop Sweets & Snacks • ${siteName}`,
+    description:
+      "Browse handcrafted Indian sweets, namkeen, snacks, and gift boxes. Fresh mithai and traditional treats.",
+    url: `${getBaseUrl()}/products`,
+  },
+  alternates: { canonical: `${getBaseUrl()}/products` },
 };
 
 export default async function ProductsPage() {

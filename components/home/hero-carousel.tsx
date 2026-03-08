@@ -29,7 +29,7 @@ export function HeroCarousel() {
             BALAJI SNACKS
           </div>
           <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Fresh Gulab Jamun moments.
+            “Where every bite feels like home.”
           </h1>
           <p className="mt-4 text-pretty text-sm leading-7 text-white/85 sm:text-base">
             Authentic traditional sweets and crunchy snacks — freshly prepared and
