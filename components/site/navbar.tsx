@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, ShoppingBag, LogIn, LogOut, X } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -28,7 +27,6 @@ export function Navbar() {
   const cartCount = useCart((s) => s.count());
   const hasHydrated = useCart((s) => s.hasHydrated);
   const openCartPopup = useCartPopup().openPopup;
-  const { data } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -126,24 +124,6 @@ export function Navbar() {
 
           <ThemeToggle />
 
-          {data?.user ? (
-            <Button
-              type="button"
-              variant="ghost"
-              className="hidden sm:inline-flex"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            >
-              <LogOut />
-              Sign out
-            </Button>
-          ) : (
-            <Button asChild variant="ghost" className="hidden sm:inline-flex">
-              <Link href="/login" className="gap-2">
-                <LogIn />
-                Sign in
-              </Link>
-            </Button>
-          )}
           <Button
             type="button"
             variant="outline"
@@ -249,34 +229,12 @@ export function Navbar() {
                 </Link>
               </div>
 
-              <div className="grid gap-2 border-t border-[color:var(--border)] p-4">
+              <div className="border-t border-[color:var(--border)] p-4">
                 <Button asChild className="w-full">
                   <Link href="/products" onClick={() => setMobileOpen(false)}>
                     Shop now
                   </Link>
                 </Button>
-                {data?.user ? (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => signOut({ callbackUrl: "/" })}
-                  >
-                    <LogOut />
-                    Sign out
-                  </Button>
-                ) : (
-                  <Button asChild variant="outline" className="w-full">
-                    <Link
-                      href="/login"
-                      className="gap-2"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <LogIn />
-                      Sign in
-                    </Link>
-                  </Button>
-                )}
               </div>
             </motion.div>
           </>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MenuSquare, ShoppingBag, User } from "lucide-react";
+import { Home, MenuSquare, ShoppingBag, Package } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/store/cart";
@@ -11,7 +11,7 @@ import { useCartPopup } from "@/components/cart/cart-popup-context";
 const linkItems = [
   { href: "/", label: "Home", Icon: Home },
   { href: "/menu", label: "Menu", Icon: MenuSquare },
-  { href: "/login", label: "Account", Icon: User },
+  { href: "/track", label: "Track", Icon: Package },
 ] as const;
 
 export function MobileBottomNav() {
@@ -20,12 +20,8 @@ export function MobileBottomNav() {
   const hasHydrated = useCart((s) => s.hasHydrated);
   const openCartPopup = useCartPopup().openPopup;
 
-  // Hide on admin + auth + demo routes (these have their own UX)
-  if (
-    pathname.startsWith("/admin") ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/demo")
-  ) {
+  // Hide on admin + demo routes (these have their own UX)
+  if (pathname.startsWith("/admin") || pathname.startsWith("/demo")) {
     return null;
   }
 

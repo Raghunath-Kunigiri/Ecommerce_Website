@@ -3,7 +3,7 @@
 import { SessionProvider } from "next-auth/react";
 import { CartPopupProvider } from "@/components/cart/cart-popup-context";
 import { ToastProvider } from "@/components/ui/toast-context";
-import { CartPopup } from "@/components/cart/cart-popup";
+import { CartDrawer } from "@/components/CartDrawer";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ToastProvider>
         <CartPopupProvider>
           {children}
-          <CartPopup />
+          <CartDrawer />
         </CartPopupProvider>
       </ToastProvider>
     </SessionProvider>

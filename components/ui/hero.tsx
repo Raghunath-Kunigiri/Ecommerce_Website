@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -184,12 +185,12 @@ export default function ShaderShowcase() {
           >
             <ArrowUpRight className="size-3" strokeWidth={2} />
           </button>
-          <button
-            type="button"
+          <Link
+            href="/products"
             className="z-10 flex h-8 items-center justify-center rounded-full bg-white px-6 py-2 font-normal text-black text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer"
           >
-            Login
-          </button>
+            Shop
+          </Link>
         </div>
       </header>
 

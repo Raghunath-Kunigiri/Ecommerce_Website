@@ -12,7 +12,7 @@ const WHATSAPP_URL = WHATSAPP_NUMBER
 
 export function WhatsAppFloat() {
   const pathname = usePathname() ?? "/";
-  if (pathname.startsWith("/admin") || pathname.startsWith("/login") || pathname.startsWith("/demo")) {
+  if (pathname.startsWith("/admin") || pathname.startsWith("/demo")) {
     return null;
   }
   return (

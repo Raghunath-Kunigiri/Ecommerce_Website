@@ -91,9 +91,11 @@ export default function RootLayout({
       className="h-full scroll-smooth"
       data-scroll-behavior="smooth"
       data-theme="light"
+      suppressHydrationWarning
     >
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} min-h-full bg-[color:var(--bg)] text-[color:var(--fg)] antialiased`}
+        suppressHydrationWarning
       >
         <script
           type="application/ld+json"

@@ -8,7 +8,7 @@ Modern, production-ready **Indian Sweets & Snacks Shop** built with **Next.js (A
 - Tailwind CSS
 - TypeScript
 - Framer Motion
-- Zustand (client cart)
+- Zustand (client cart with **persist** in `localStorage` key `cart-storage` — survives refresh, new tab, mobile). See [docs/CART_USAGE.md](docs/CART_USAGE.md).
 - ShadCN-style UI primitives
 - Prisma ORM + PostgreSQL
 - NextAuth (Credentials)

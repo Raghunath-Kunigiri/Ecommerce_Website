@@ -238,11 +238,18 @@ export function CartPopup() {
                       {formatMoney(subtotal)}
                     </span>
                   </div>
-                  <Button asChild className="w-full" size="lg">
-                    <Link href="/cart" onClick={closePopup}>
-                      Go to cart
-                    </Link>
-                  </Button>
+                  <div className="grid gap-2">
+                    <Button asChild className="w-full" size="lg">
+                      <Link href="/checkout" onClick={closePopup}>
+                        Checkout
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" className="w-full" size="sm">
+                      <Link href="/cart" onClick={closePopup}>
+                        View full cart
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               ) : null}
             </>

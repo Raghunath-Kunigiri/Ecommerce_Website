@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroCarousel() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-[color:var(--bg)]">
+    <section className="relative -mt-20 min-h-[100svh] overflow-hidden bg-[color:var(--bg)] md:-mt-24">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover"
