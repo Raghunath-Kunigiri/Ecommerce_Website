@@ -16,6 +16,7 @@ import { formatMoney } from "@/lib/sample-data";
 import { getDeliveryFeeCents, FREE_DELIVERY_THRESHOLD_CENTS } from "@/lib/guest-order";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PreCheckoutUpsell } from "@/components/checkout/pre-checkout-upsell";
 
 const INDIAN_PHONE_REGEX = /^[6-9]\d{9}$/;
 const PINCODE_REGEX = /^\d{6}$/;
@@ -272,6 +273,8 @@ export function CheckoutStart() {
             </p>
           </div>
         </section>
+
+        {items.length > 0 ? <PreCheckoutUpsell placement="checkout" /> : null}
 
         <section className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-2)] p-5">
           <div className="text-base font-semibold">Order summary</div>

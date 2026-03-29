@@ -7,6 +7,7 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/lib/store/cart";
 import { formatMoney } from "@/lib/sample-data";
 import { Button } from "@/components/ui/button";
+import { PreCheckoutUpsell } from "@/components/checkout/pre-checkout-upsell";
 
 export function CartView() {
   const items = useCart((s) => s.items);
@@ -109,6 +110,7 @@ export function CartView() {
             </div>
           </div>
         ))}
+        <PreCheckoutUpsell placement="cart" />
       </div>
 
       <div className="h-fit rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-1)] p-6">

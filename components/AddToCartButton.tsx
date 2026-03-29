@@ -6,7 +6,6 @@ import { ShoppingBag } from "lucide-react";
 
 import type { Product } from "@/lib/types";
 import { useCart } from "@/lib/store/cart";
-import { useCartPopup } from "@/components/cart/cart-popup-context";
 import { useToast } from "@/components/ui/toast-context";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +20,7 @@ type AddToCartButtonProps = {
 
 /**
  * Reusable add-to-cart button. Adds item (or increases quantity if already in cart),
- * opens the cart drawer, and shows a toast. Includes a small animation on add.
+ * and shows a toast. The cart drawer opens only from the cart icon in the header. Includes a small animation on add.
  */
 export function AddToCartButton({
   product,
@@ -32,14 +31,12 @@ export function AddToCartButton({
   children,
 }: AddToCartButtonProps) {
   const add = useCart((s) => s.add);
-  const openPopup = useCartPopup().openPopup;
   const { showToast } = useToast();
   const [animating, setAnimating] = useState(false);
 
   const handleClick = () => {
     add(product, quantity);
     showToast("Added to cart!");
-    openPopup();
     setAnimating(true);
     const t = setTimeout(() => setAnimating(false), 400);
     return () => clearTimeout(t);

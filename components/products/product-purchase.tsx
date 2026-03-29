@@ -4,13 +4,11 @@ import { Plus } from "lucide-react";
 
 import type { Product } from "@/lib/types";
 import { useCart } from "@/lib/store/cart";
-import { useCartPopup } from "@/components/cart/cart-popup-context";
 import { useToast } from "@/components/ui/toast-context";
 import { Button } from "@/components/ui/button";
 
 export function ProductPurchase({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
-  const openPopup = useCartPopup().openPopup;
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
   const { showToast } = useToast();
@@ -45,7 +43,6 @@ export function ProductPurchase({ product }: { product: Product }) {
           onClick={() => {
             add(product, 1);
             showToast("Added to cart!");
-            openPopup();
           }}
         >
           <Plus className="size-5" strokeWidth={2.5} />
@@ -61,7 +58,6 @@ export function ProductPurchase({ product }: { product: Product }) {
       onClick={() => {
         add(product, 1);
         showToast("Added to cart!");
-        openPopup();
       }}
     >
       <Plus className="size-4 shrink-0" />

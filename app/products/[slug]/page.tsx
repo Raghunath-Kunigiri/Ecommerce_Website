@@ -8,6 +8,8 @@ import { getProductBySlug } from "@/lib/catalog";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPurchase } from "@/components/products/product-purchase";
 import { RecommendedStrip } from "@/components/products/recommended-strip";
+import AIRecommendChat from "@/components/AIRecommendChat";
+import AIRelatedProducts from "@/components/AIRelatedProducts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getBaseUrl, siteName, defaultDescription } from "@/lib/seo";
@@ -152,10 +154,13 @@ export default async function ProductDetailsPage({ params }: Props) {
               </div>
             </div>
           </div>
+
+          <AIRelatedProducts currentProduct={product.name} />
         </div>
       </div>
       </div>
       <RecommendedStrip productSlug={product.slug} />
+      <AIRecommendChat currentProduct={product.name} />
     </div>
   );
 }

@@ -8,7 +8,6 @@ import { Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/sample-data";
 import { useCart } from "@/lib/store/cart";
-import { useCartPopup } from "@/components/cart/cart-popup-context";
 import { useToast } from "@/components/ui/toast-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,6 @@ type Props = {
 
 export function ProductCard({ product, showPrice = true }: Props) {
   const add = useCart((s) => s.add);
-  const openPopup = useCartPopup().openPopup;
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
   const { showToast } = useToast();
@@ -136,7 +134,6 @@ export function ProductCard({ product, showPrice = true }: Props) {
                 onClick={() => {
                   add(product, 1);
                   showToast("Added to cart!");
-                  openPopup();
                 }}
               >
                 <Plus className="size-5" strokeWidth={2.5} />
@@ -147,7 +144,6 @@ export function ProductCard({ product, showPrice = true }: Props) {
               onClick={() => {
                 add(product, 1);
                 showToast("Added to cart!");
-                openPopup();
               }}
               className="min-h-[44px] w-full touch-manipulation"
               variant="secondary"
