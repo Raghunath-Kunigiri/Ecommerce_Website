@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 type AddToCartButtonProps = {
   product: Product;
   quantity?: number;
-  variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "destructive";
+  variant?: "default" | "secondary" | "outline" | "ghost" | "link";
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
   children?: React.ReactNode;
